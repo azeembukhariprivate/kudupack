@@ -17,3 +17,15 @@ installer/Output/
 # OS files
 Thumbs.db
 .DS_Store
+
+# Local secrets and code-signing keys
+.env
+.env.*
+*.pfx
+*.p12
+*.snk
+*.pem
+*.key
+
+# Editors
+.vscode/
