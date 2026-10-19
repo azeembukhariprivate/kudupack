@@ -1,0 +1,66 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+    tags: ['v*']
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: windows-latest
+
+    steps:
+      - name: Check out
+        uses: actions/checkout@v4
+
+      - name: Work out the version
+        id: ver
+        shell: pwsh
+        run: |
+          $version = ([xml](Get-Content src/KUDUPACK/KUDUPACK.csproj)).Project.PropertyGroup.Version | Where-Object { $_ } | Select-Object -First 1
+          if ("${{ github.ref_type }}" -eq "tag") { $version = "${{ github.ref_name }}".TrimStart('v', 'V') }
+          "version=$version" >> $env:GITHUB_OUTPUT
+          Write-Host "Version: $version"
+
+      - name: Build
+        shell: pwsh
+        run: dotnet build src/KUDUPACK/KUDUPACK.csproj -c Release "-p:Version=${{ steps.ver.outputs.version }}" -o out/KUDUPACK
+
+      - name: Show build output
+        shell: pwsh
+        run: Get-ChildItem -Recurse out/KUDUPACK | Select-Object FullName, Length | Format-Table -AutoSize
+
+      - name: Make portable zip
+        shell: pwsh
+        run: |
+          New-Item -ItemType Directory -Force artifacts | Out-Null
+          Compress-Archive -Path out/KUDUPACK/* -DestinationPath "artifacts/KUDUPACK-${{ steps.ver.outputs.version }}-portable.zip"
+
+      - name: Make installer
+        shell: pwsh
+        run: |
+          $iscc = Join-Path ${env:ProgramFiles(x86)} "Inno Setup 6\ISCC.exe"
+          if (-not (Test-Path $iscc)) {
+            choco install innosetup -y --no-progress | Out-Null
+          }
+          & $iscc "/DMyAppVersion=${{ steps.ver.outputs.version }}" "/DSourceDir=$PWD\out\KUDUPACK" "/O$PWD\artifacts" installer\KUDUPACK.iss
+          if ($LASTEXITCODE -ne 0) { exit $LASTEXITCODE }
+
+      - name: Upload build files
+        uses: actions/upload-artifact@v4
+        with:
+          name: KUDUPACK-${{ steps.ver.outputs.version }}
+          path: artifacts/*
+
+      - name: Publish GitHub release
+        if: github.ref_type == 'tag'
+        uses: softprops/action-gh-release@v2
+        with:
+          name: KUDUPACK ${{ steps.ver.outputs.version }}
+          files: artifacts/*
+          generate_release_notes: true

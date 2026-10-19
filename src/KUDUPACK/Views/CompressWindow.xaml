@@ -1,0 +1,167 @@
+<Window x:Class="Kudupack.Views.CompressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:Kudupack.Controls"
+        Title="Create archive - KUDUPACK" Width="600" Height="760" MinWidth="480" MinHeight="520"
+        WindowStartupLocation="CenterOwner"
+        Icon="/KUDUPACK;component/Assets/KUDUPACK.ico"
+        Background="{DynamicResource WindowBg}" Foreground="{DynamicResource Text}"
+        FontFamily="{StaticResource UiFont}" FontSize="13"
+        AllowDrop="True" DragOver="Window_DragOver" Drop="Window_Drop">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <ScrollViewer VerticalScrollBarVisibility="Auto">
+            <StackPanel Margin="24,20,24,16">
+                <TextBlock Text="Create archive" FontSize="20" FontWeight="SemiBold" Margin="0,0,0,16"/>
+
+                <!-- Name -->
+                <TextBlock Text="Archive name" Style="{StaticResource FieldLabel}"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="NameBox" Grid.Column="0" AutomationProperties.Name="Archive name"/>
+                    <TextBlock x:Name="ExtensionText" Grid.Column="1" FontFamily="Consolas" Margin="10,0,0,0"
+                               VerticalAlignment="Center" Foreground="{DynamicResource SubtleText}"/>
+                </Grid>
+
+                <!-- Destination -->
+                <TextBlock Text="Save to" Style="{StaticResource FieldLabel}" Margin="0,16,0,6"/>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="Auto"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBox x:Name="FolderBox" Grid.Column="0" AutomationProperties.Name="Save to folder"/>
+                    <Button Grid.Column="1" Content="Browse…" Style="{StaticResource SecondaryButton}" Margin="8,0,0,0"
+                            Click="Browse_Click"/>
+                </Grid>
+
+                <!-- Format -->
+                <TextBlock Text="Format" Style="{StaticResource FieldLabel}" Margin="0,18,0,8"/>
+                <UniformGrid Columns="3">
+                    <RadioButton x:Name="FormatZip" GroupName="Format" Style="{StaticResource ChipRadio}" Checked="Format_Checked">
+                        <StackPanel><TextBlock Text="ZIP" FontFamily="Consolas" FontWeight="SemiBold"/><TextBlock Text="Opens everywhere" Style="{StaticResource Subtle}" FontSize="11"/></StackPanel>
+                    </RadioButton>
+                    <RadioButton x:Name="Format7z" GroupName="Format" Style="{StaticResource ChipRadio}" Checked="Format_Checked">
+                        <StackPanel><TextBlock Text="7Z" FontFamily="Consolas" FontWeight="SemiBold"/><TextBlock Text="Smallest files" Style="{StaticResource Subtle}" FontSize="11"/></StackPanel>
+                    </RadioButton>
+                    <RadioButton x:Name="FormatTar" GroupName="Format" Style="{StaticResource ChipRadio}" Checked="Format_Checked">
+                        <StackPanel><TextBlock Text="TAR" FontFamily="Consolas" FontWeight="SemiBold"/><TextBlock Text="No compression" Style="{StaticResource Subtle}" FontSize="11"/></StackPanel>
+                    </RadioButton>
+                    <RadioButton x:Name="FormatTgz" GroupName="Format" Style="{StaticResource ChipRadio}" Checked="Format_Checked">
+                        <StackPanel><TextBlock Text="TAR.GZ" FontFamily="Consolas" FontWeight="SemiBold"/><TextBlock Text="Linux standard" Style="{StaticResource Subtle}" FontSize="11"/></StackPanel>
+                    </RadioButton>
+                    <RadioButton x:Name="FormatTbz" GroupName="Format" Style="{StaticResource ChipRadio}" Checked="Format_Checked">
+                        <StackPanel><TextBlock Text="TAR.BZ2" FontFamily="Consolas" FontWeight="SemiBold"/><TextBlock Text="Smaller, slower" Style="{StaticResource Subtle}" FontSize="11"/></StackPanel>
+                    </RadioButton>
+                    <RadioButton x:Name="FormatTxz" GroupName="Format" Style="{StaticResource ChipRadio}" Checked="Format_Checked">
+                        <StackPanel><TextBlock Text="TAR.XZ" FontFamily="Consolas" FontWeight="SemiBold"/><TextBlock Text="Smallest for Linux" Style="{StaticResource Subtle}" FontSize="11"/></StackPanel>
+                    </RadioButton>
+                </UniformGrid>
+                <TextBlock Text="RAR archives can be opened and extracted, but not created." Style="{StaticResource Subtle}"/>
+
+                <!-- Level -->
+                <StackPanel x:Name="LevelPanel" Margin="0,18,0,0">
+                    <DockPanel>
+                        <TextBlock x:Name="LevelName" DockPanel.Dock="Right" FontWeight="SemiBold" Foreground="{DynamicResource LinkText}"/>
+                        <TextBlock Text="Compression level" Style="{StaticResource FieldLabel}"/>
+                    </DockPanel>
+                    <Slider x:Name="LevelSlider" Minimum="0" Maximum="4" TickFrequency="1" IsSnapToTickEnabled="True"
+                            TickPlacement="BottomRight" ValueChanged="LevelSlider_ValueChanged"
+                            AutomationProperties.Name="Compression level"/>
+                    <UniformGrid Columns="5" Margin="0,2,0,0">
+                        <TextBlock Text="Store" Style="{StaticResource Subtle}" FontSize="11"/>
+                        <TextBlock Text="Fast" Style="{StaticResource Subtle}" FontSize="11"/>
+                        <TextBlock Text="Normal" Style="{StaticResource Subtle}" FontSize="11" TextAlignment="Center"/>
+                        <TextBlock Text="Maximum" Style="{StaticResource Subtle}" FontSize="11" TextAlignment="Right"/>
+                        <TextBlock Text="Ultra" Style="{StaticResource Subtle}" FontSize="11" TextAlignment="Right"/>
+                    </UniformGrid>
+                </StackPanel>
+
+                <!-- Password -->
+                <StackPanel x:Name="PasswordPanel" Margin="0,18,0,0">
+                    <TextBlock Text="Password (optional)" Style="{StaticResource FieldLabel}"/>
+                    <PasswordBox x:Name="PasswordInput" AutomationProperties.Name="Password"/>
+                    <PasswordBox x:Name="PasswordRepeat" Margin="0,8,0,0" AutomationProperties.Name="Repeat password"/>
+                    <TextBlock Text="Type the password twice. Leave both empty for no password." Style="{StaticResource Subtle}" Margin="0,4,0,0"/>
+                    <CheckBox x:Name="EncryptNames" Content="Also hide file names (7Z only)" Margin="0,8,0,0"/>
+                </StackPanel>
+                <TextBlock x:Name="NoPasswordText" Text="TAR formats don't support passwords." Style="{StaticResource Subtle}" Margin="0,18,0,0"/>
+
+                <!-- Split -->
+                <StackPanel x:Name="SplitPanel" Margin="0,18,0,0">
+                    <TextBlock Text="Split into parts" Style="{StaticResource FieldLabel}" Margin="0,0,0,8"/>
+                    <WrapPanel>
+                        <RadioButton x:Name="SplitNone" GroupName="Split" Content="Don't split" Style="{StaticResource ChipRadio}" IsChecked="True"/>
+                        <RadioButton x:Name="Split100" GroupName="Split" Content="100 MB" Style="{StaticResource ChipRadio}"/>
+                        <RadioButton x:Name="Split700" GroupName="Split" Content="700 MB" Style="{StaticResource ChipRadio}"/>
+                        <RadioButton x:Name="Split4G" GroupName="Split" Content="4 GB (USB drives)" Style="{StaticResource ChipRadio}"/>
+                    </WrapPanel>
+                </StackPanel>
+
+                <!-- Files -->
+                <DockPanel Margin="0,14,0,8">
+                    <StackPanel DockPanel.Dock="Right" Orientation="Horizontal">
+                        <Button Content="+ Files" Style="{StaticResource LinkButton}" Click="AddFiles_Click" Margin="0,0,16,0"/>
+                        <Button Content="+ Folder" Style="{StaticResource LinkButton}" Click="AddFolder_Click"/>
+                    </StackPanel>
+                    <TextBlock Text="Files to add" Style="{StaticResource FieldLabel}" Margin="0"/>
+                </DockPanel>
+                <Border Background="{DynamicResource SurfaceBg}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="1"
+                        CornerRadius="6" MinHeight="90" MaxHeight="200">
+                    <Grid>
+                        <ListBox x:Name="InputList" Background="Transparent" BorderThickness="0" Foreground="{DynamicResource Text}"
+                                 ScrollViewer.HorizontalScrollBarVisibility="Disabled" AutomationProperties.Name="Files to add">
+                            <ListBox.ItemContainerStyle>
+                                <Style TargetType="ListBoxItem">
+                                    <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
+                                    <Setter Property="Template">
+                                        <Setter.Value>
+                                            <ControlTemplate TargetType="ListBoxItem">
+                                                <Border Padding="10,4"><ContentPresenter/></Border>
+                                            </ControlTemplate>
+                                        </Setter.Value>
+                                    </Setter>
+                                </Style>
+                            </ListBox.ItemContainerStyle>
+                            <ListBox.ItemTemplate>
+                                <DataTemplate>
+                                    <DockPanel>
+                                        <Button DockPanel.Dock="Right" Style="{StaticResource GhostButton}" MinHeight="26" Padding="6,0"
+                                                Tag="{Binding Path}" Click="RemoveInput_Click" ToolTip="Remove"
+                                                AutomationProperties.Name="Remove from list">
+                                            <c:Glyph Data="{StaticResource IconClose}" Width="12" Height="12"/>
+                                        </Button>
+                                        <TextBlock DockPanel.Dock="Right" Text="{Binding Detail}" Foreground="{DynamicResource SubtleText}"
+                                                   VerticalAlignment="Center" Margin="8,0"/>
+                                        <TextBlock Text="{Binding Name}" VerticalAlignment="Center" TextTrimming="CharacterEllipsis"
+                                                   ToolTip="{Binding Path}"/>
+                                    </DockPanel>
+                                </DataTemplate>
+                            </ListBox.ItemTemplate>
+                        </ListBox>
+                        <TextBlock x:Name="NoInputsText" Text="Drop files or folders here, or use + Files / + Folder."
+                                   Style="{StaticResource Subtle}" HorizontalAlignment="Center" VerticalAlignment="Center"
+                                   TextAlignment="Center" Margin="12"/>
+                    </Grid>
+                </Border>
+                <TextBlock x:Name="InputSummary" Style="{StaticResource Subtle}" Margin="0,6,0,0"/>
+            </StackPanel>
+        </ScrollViewer>
+
+        <Border Grid.Row="1" Background="{DynamicResource SurfaceAltBg}" BorderBrush="{DynamicResource BorderBrush}"
+                BorderThickness="0,1,0,0" Padding="24,14">
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Right">
+                <Button Content="Cancel" Style="{StaticResource SecondaryButton}" IsCancel="True" Margin="0,0,10,0" MinWidth="90"/>
+                <Button x:Name="CreateButton" Content="Create" Style="{StaticResource PrimaryButton}" IsDefault="True"
+                        MinWidth="110" Click="Create_Click"/>
+            </StackPanel>
+        </Border>
+    </Grid>
+</Window>

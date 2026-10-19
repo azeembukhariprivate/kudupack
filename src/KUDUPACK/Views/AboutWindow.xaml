@@ -1,0 +1,36 @@
+<Window x:Class="Kudupack.Views.AboutWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:c="clr-namespace:Kudupack.Controls"
+        Title="About KUDUPACK" Width="460" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Icon="/KUDUPACK;component/Assets/KUDUPACK.ico"
+        Background="{DynamicResource WindowBg}" Foreground="{DynamicResource Text}"
+        FontFamily="{StaticResource UiFont}" FontSize="13">
+    <StackPanel>
+        <StackPanel Margin="32,28,32,20" HorizontalAlignment="Center">
+            <Border Width="88" Height="88" CornerRadius="22" Background="{DynamicResource Accent}" HorizontalAlignment="Center">
+                <c:LogoMark Width="62" Height="62" Foreground="White"/>
+            </Border>
+            <TextBlock Text="KUDUPACK" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,16,0,2"/>
+            <TextBlock x:Name="VersionText" Foreground="{DynamicResource SubtleText}" HorizontalAlignment="Center"/>
+            <TextBlock Text="Created by Azeem with Claude" FontSize="14" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+            <TextBlock Style="{StaticResource Subtle}" FontSize="13" TextAlignment="Center" MaxWidth="340" Margin="0,8,0,0"
+                       Text="A lightweight archive tool for Windows. Opens ZIP, 7Z, RAR, TAR, GZ, XZ and more. Runs without administrator rights."/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,14,0,0">
+                <Button Content="GitHub repository" Style="{StaticResource LinkButton}" Click="Repo_Click" Margin="0,0,20,0"/>
+                <Button Content="Open-source licenses" Style="{StaticResource LinkButton}" Click="Licenses_Click"/>
+            </StackPanel>
+            <TextBlock x:Name="UpdateStatus" Style="{StaticResource Subtle}" HorizontalAlignment="Center" Margin="0,12,0,0"
+                       TextAlignment="Center"/>
+        </StackPanel>
+        <Border Background="{DynamicResource SurfaceAltBg}" BorderBrush="{DynamicResource BorderBrush}" BorderThickness="0,1,0,0" Padding="24,14">
+            <DockPanel>
+                <Button DockPanel.Dock="Right" Content="OK" Style="{StaticResource PrimaryButton}" MinWidth="80"
+                        IsDefault="True" IsCancel="True" Click="Ok_Click"/>
+                <Button x:Name="CheckButton" DockPanel.Dock="Left" Content="Check for updates" Style="{StaticResource SecondaryButton}"
+                        HorizontalAlignment="Left" Click="Check_Click"/>
+            </DockPanel>
+        </Border>
+    </StackPanel>
+</Window>

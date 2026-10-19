@@ -1,0 +1,19 @@
+# Build output
+bin/
+obj/
+out/
+artifacts/
+*.user
+*.suo
+.vs/
+.idea/
+*.swp
+
+# Packaging
+installer/Output/
+*.zip
+!docs/**/*.zip
+
+# OS files
+Thumbs.db
+.DS_Store

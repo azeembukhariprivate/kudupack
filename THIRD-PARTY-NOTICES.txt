@@ -1,0 +1,35 @@
+KUDUPACK - third-party notices
+==============================
+
+KUDUPACK itself is released under the MIT License (see LICENSE.txt).
+It ships with the following open-source components, each under its own license.
+
+
+1. 7-Zip engine (x64\7z.dll and x86\7z.dll)
+-------------------------------------------
+Copyright (C) 1999-2024 Igor Pavlov.
+Website and source code: https://www.7-zip.org
+
+Most of 7z.dll is licensed under the GNU Lesser General Public License (LGPL),
+version 2.1 or later. Some parts are licensed under the BSD 3-clause and BSD 2-clause
+licenses. The RAR decompression code is covered by the GNU LGPL together with the
+unRAR license restriction: the unRAR source code may not be used to develop a
+RAR (WinRAR) compatible archiver. KUDUPACK only extracts RAR archives and does not
+create them.
+
+The full 7-Zip license text is available at https://www.7-zip.org/license.txt
+The DLL files are unmodified copies distributed through the "7z.Libs" NuGet package.
+
+
+2. SevenZipSharp (SevenZipSharp.dll)
+------------------------------------
+Copyright (C) Markovtsev Vadim, Joel Ahlgren and contributors.
+Source code: https://github.com/squid-box/SevenZipSharp
+
+Licensed under the GNU Lesser General Public License, version 3.
+The license text is included in the "licenses" folder of the KUDUPACK source code
+(LGPL-3.0.txt, which builds on GPL-3.0.txt) and at
+https://www.gnu.org/licenses/lgpl-3.0.html
+
+KUDUPACK uses SevenZipSharp as a separate, unmodified library file. You may replace
+SevenZipSharp.dll or 7z.dll with your own compatible build.

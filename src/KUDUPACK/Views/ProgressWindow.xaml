@@ -1,0 +1,20 @@
+<Window x:Class="Kudupack.Views.ProgressWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="KUDUPACK" Width="440" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="True"
+        Icon="/KUDUPACK;component/Assets/KUDUPACK.ico"
+        Background="{DynamicResource WindowBg}" Foreground="{DynamicResource Text}"
+        FontFamily="{StaticResource UiFont}" FontSize="13">
+    <StackPanel Margin="24,20,24,20">
+        <TextBlock x:Name="TitleText" FontSize="16" FontWeight="SemiBold" TextTrimming="CharacterEllipsis"/>
+        <TextBlock x:Name="StatusText" Style="{StaticResource Subtle}" FontSize="13" Margin="0,6,0,14"
+                   TextTrimming="CharacterEllipsis" TextWrapping="NoWrap"/>
+        <ProgressBar x:Name="Bar" IsIndeterminate="True" Minimum="0" Maximum="100"/>
+        <DockPanel Margin="0,16,0,0" LastChildFill="False">
+            <TextBlock x:Name="PercentText" DockPanel.Dock="Left" VerticalAlignment="Center" Style="{StaticResource Subtle}"/>
+            <Button x:Name="CancelButton" DockPanel.Dock="Right" Content="Cancel" Style="{StaticResource SecondaryButton}"
+                    Click="Cancel_Click" IsCancel="True"/>
+        </DockPanel>
+    </StackPanel>
+</Window>
