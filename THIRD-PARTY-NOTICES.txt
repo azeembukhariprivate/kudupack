@@ -17,7 +17,8 @@ unRAR license restriction: the unRAR source code may not be used to develop a
 RAR (WinRAR) compatible archiver. KUDUPACK only extracts RAR archives and does not
 create them.
 
-The full 7-Zip license text is available at https://www.7-zip.org/license.txt
+The full 7-Zip license text is included in the "licenses" folder (7-Zip.txt) and is
+also available at https://www.7-zip.org/license.txt
 The DLL files are unmodified copies distributed through the "7z.Libs" NuGet package.
 
 
