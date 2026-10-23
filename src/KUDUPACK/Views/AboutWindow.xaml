@@ -14,7 +14,7 @@
             </Border>
             <TextBlock Text="KUDUPACK" FontSize="26" FontWeight="Bold" HorizontalAlignment="Center" Margin="0,16,0,2"/>
             <TextBlock x:Name="VersionText" Foreground="{DynamicResource SubtleText}" HorizontalAlignment="Center"/>
-            <TextBlock Text="Created by Azeem with Claude" FontSize="14" HorizontalAlignment="Center" Margin="0,12,0,0"/>
+            <TextBlock FontSize="14" HorizontalAlignment="Center" Margin="0,12,0,0">Made by Azeem, with Claude and <Run Text="♥" Foreground="{DynamicResource Accent}"/></TextBlock>
             <TextBlock Style="{StaticResource Subtle}" FontSize="13" TextAlignment="Center" MaxWidth="340" Margin="0,8,0,0"
                        Text="A lightweight archive tool for Windows. Opens ZIP, 7Z, RAR, TAR, GZ, XZ and more. Runs without administrator rights."/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center" Margin="0,14,0,0">
