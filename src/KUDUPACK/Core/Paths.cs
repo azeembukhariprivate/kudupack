@@ -88,6 +88,63 @@ namespace Kudupack.Core
             return path;
         }
 
+        public static string UniqueFilePath(string folder, string name)
+        {
+            var path = Path.Combine(folder, name);
+            var stem = Path.GetFileNameWithoutExtension(name);
+            var ext = Path.GetExtension(name);
+            var i = 2;
+            while (File.Exists(path) || Directory.Exists(path)) path = Path.Combine(folder, $"{stem} ({i++}){ext}");
+            return path;
+        }
+
+        // Characters the archive engine replaces with "_" in the names it writes (Windows' invalid file name characters).
+        private const string EngineReplaces = "\"<>|:*?";
+
+        private static readonly Regex DeviceName = new Regex(@"^(CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9]|CONIN\$|CONOUT\$) *(\..*)?$",
+            RegexOptions.IgnoreCase | RegexOptions.CultureInvariant);
+
+        /// <summary>
+        /// Where the archive engine writes an entry when extracting into a folder, or null when the entry's name would put
+        /// it anywhere else: a path starting with "\", ".." parts (the "zip slip" trick) or a name Windows reserves for a
+        /// device (CON, NUL, COM1…). Mirrors how the engine builds the path, so the answer matches where the file lands.
+        /// </summary>
+        public static string EntryTarget(string folder, string entryName)
+        {
+            var name = (entryName ?? string.Empty).Replace('/', '\\');
+            if (name.StartsWith("\\", StringComparison.Ordinal)) return null;
+
+            var parts = new System.Collections.Generic.List<string>();
+            foreach (var raw in name.Split('\\'))
+            {
+                if (raw.Length == 0 || raw == ".") continue;
+                // Windows drops trailing dots and spaces, so "..", "..." and ". ." all lead upwards.
+                var trimmed = raw.TrimEnd('.', ' ');
+                if (trimmed.Length == 0 || DeviceName.IsMatch(trimmed)) return null;
+                var part = new System.Text.StringBuilder(raw.Length);
+                foreach (var c in raw) part.Append(c < 32 || EngineReplaces.IndexOf(c) >= 0 ? '_' : c);
+                parts.Add(part.ToString());
+            }
+            if (parts.Count == 0) return null;
+
+            var target = Path.Combine(folder, string.Join(Path.DirectorySeparatorChar.ToString(), parts));
+            return IsInside(target, folder) ? target : null;
+        }
+
+        /// <summary>True when a path is inside a folder (not the folder itself).</summary>
+        public static bool IsInside(string path, string folder)
+        {
+            try
+            {
+                var root = Path.GetFullPath(folder).TrimEnd(Path.DirectorySeparatorChar) + Path.DirectorySeparatorChar;
+                return Path.GetFullPath(path).StartsWith(root, StringComparison.OrdinalIgnoreCase);
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
         /// <summary>Creates the folder and checks we can write to it, without admin rights.</summary>
         public static void EnsureWritable(string dir)
         {

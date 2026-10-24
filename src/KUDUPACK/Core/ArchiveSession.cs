@@ -6,10 +6,39 @@ using SevenZip;
 
 namespace Kudupack.Core
 {
+    /// <summary>What an extraction left out or changed.</summary>
+    public sealed class ExtractReport
+    {
+        /// <summary>Entries not extracted because their names would put them outside the folder (see <see cref="Paths.EntryTarget"/>).</summary>
+        public List<string> Unsafe { get; } = new List<string>();
+        public int Replaced { get; set; }
+        public int Skipped { get; set; }
+        public int KeptBoth { get; set; }
+
+        public void Add(ExtractReport other)
+        {
+            Unsafe.AddRange(other.Unsafe);
+            Replaced += other.Replaced;
+            Skipped += other.Skipped;
+            KeptBoth += other.KeptBoth;
+        }
+
+        /// <summary>A warning about the entries that were left out, or null when there were none.</summary>
+        public string UnsafeWarning()
+        {
+            if (Unsafe.Count == 0) return null;
+            var list = string.Join("\n", Unsafe.Take(8)) + (Unsafe.Count > 8 ? $"\n…and {Unsafe.Count - 8} more" : string.Empty);
+            return (Unsafe.Count == 1 ? "1 item wasn't" : $"{Unsafe.Count} items weren't") +
+                   " extracted because its name would put it outside the folder you chose, or uses a name Windows reserves. " +
+                   "Archives made to harm a PC use names like these, so be careful with the rest of this archive.\n\n" + list;
+        }
+    }
+
     /// <summary>An opened archive: its file tree plus the operations that act on it.</summary>
     public sealed class ArchiveSession : IDisposable
     {
         private string _tempDir;
+        private List<ArchiveFileInfo> _entries = new List<ArchiveFileInfo>();
 
         private ArchiveSession(string path)
         {
@@ -85,7 +114,7 @@ namespace Kudupack.Core
                 using (var ex = NewExtractor(SourcePath))
                 using (var fs = File.Create(tarPath))
                 {
-                    Hook(ex, r);
+                    Hook(ex, r, null);
                     ex.ExtractFile(data[0].Index, fs);
                 }
                 r.Token.ThrowIfCancellationRequested();
@@ -129,6 +158,7 @@ namespace Kudupack.Core
 
         private void BuildTree(List<ArchiveFileInfo> data)
         {
+            _entries = data;
             Root = new ArchiveNode { Name = DisplayName, IsFolder = true, FullPath = string.Empty, IsExpanded = true };
             var folders = new Dictionary<string, ArchiveNode>(StringComparer.OrdinalIgnoreCase) { [string.Empty] = Root };
 
@@ -185,32 +215,111 @@ namespace Kudupack.Core
 
         // ---------- Operations ----------
 
-        public void ExtractAll(string destination, ProgressReporter r)
-        {
-            Paths.EnsureWritable(destination);
-            WithPassword(r, () =>
-            {
-                using (var ex = NewExtractor(WorkingPath))
-                {
-                    Hook(ex, r);
-                    ex.ExtractArchive(destination);
-                }
-            });
-        }
+        public ExtractReport ExtractAll(string destination, ProgressReporter r) => Extract(destination, null, r);
 
-        public void ExtractIndexes(string destination, IEnumerable<int> indexes, ProgressReporter r)
+        public ExtractReport ExtractIndexes(string destination, IEnumerable<int> indexes, ProgressReporter r)
         {
             var list = indexes.Distinct().OrderBy(i => i).ToArray();
-            if (list.Length == 0) return;
+            return list.Length == 0 ? new ExtractReport() : Extract(destination, list, r);
+        }
+
+        /// <summary>
+        /// Extracts everything (indexes null) or some entries into a folder. Entries whose names would land outside the
+        /// folder are never written, and when files already exist the user chooses to replace, keep both or skip them.
+        /// </summary>
+        private ExtractReport Extract(string destination, int[] indexes, ProgressReporter r)
+        {
             Paths.EnsureWritable(destination);
+            var report = new ExtractReport();
+            var wanted = indexes == null ? null : new HashSet<int>(indexes);
+            var skip = new HashSet<int>();
+            var existing = new List<(int Index, string Name, string Target)>();
+
+            foreach (var e in _entries)
+            {
+                if (wanted != null && !wanted.Contains(e.Index)) continue;
+                var name = EngineName(e);
+                var target = Paths.EntryTarget(destination, name);
+                if (target == null)
+                {
+                    skip.Add(e.Index);
+                    report.Unsafe.Add(name);
+                }
+                else if (!e.IsDirectory && File.Exists(target))
+                {
+                    existing.Add((e.Index, name, target));
+                }
+            }
+
+            var choice = OverwriteChoice.Replace;
+            if (existing.Count > 0)
+            {
+                choice = r.AskOverwrite(new OverwriteQuestion
+                {
+                    Folder = destination,
+                    Names = existing.Select(x => x.Target.Substring(destination.TrimEnd('\\', '/').Length).TrimStart('\\', '/')).ToList()
+                });
+                if (choice == OverwriteChoice.Cancel) throw new OperationCanceledException();
+                if (choice == OverwriteChoice.Replace) report.Replaced = existing.Count;
+                else
+                {
+                    // Skipped here; "keep both" extracts them again below, under new names.
+                    foreach (var x in existing) skip.Add(x.Index);
+                    if (choice == OverwriteChoice.Skip) report.Skipped = existing.Count;
+                }
+            }
+
             WithPassword(r, () =>
             {
                 using (var ex = NewExtractor(WorkingPath))
                 {
-                    Hook(ex, r);
-                    ex.ExtractFiles(destination, list);
+                    Hook(ex, r, skip);
+                    if (indexes == null) ex.ExtractArchive(destination);
+                    else ex.ExtractFiles(destination, indexes);
                 }
             });
+
+            if (choice == OverwriteChoice.KeepBoth)
+            {
+                // Extract the clashing files on their own, then move each one in beside the file it would have replaced.
+                var temp = Paths.NewTempFolder("keep");
+                try
+                {
+                    var list = existing.Select(x => x.Index).Distinct().OrderBy(i => i).ToArray();
+                    WithPassword(r, () =>
+                    {
+                        using (var ex = NewExtractor(WorkingPath))
+                        {
+                            Hook(ex, r, null);
+                            ex.ExtractFiles(temp, list);
+                        }
+                    });
+                    foreach (var x in existing)
+                    {
+                        var extracted = Paths.EntryTarget(temp, x.Name);
+                        if (extracted == null || !File.Exists(extracted)) continue;
+                        File.Move(extracted, Paths.UniqueFilePath(Path.GetDirectoryName(x.Target), Path.GetFileName(x.Target)));
+                        report.KeptBoth++;
+                    }
+                }
+                finally
+                {
+                    Paths.TryDeleteFolder(temp);
+                }
+            }
+
+            return report;
+        }
+
+        /// <summary>The name the archive engine extracts an entry under (it makes one up for entries without a name).</summary>
+        private string EngineName(ArchiveFileInfo e)
+        {
+            if (!string.IsNullOrEmpty(e.FileName)) return e.FileName;
+            if (_entries.Count != 1) return "[no name] " + e.Index;
+            var name = Path.GetFileName(WorkingPath);
+            var dot = name.LastIndexOf('.');
+            if (dot > 0) name = name.Substring(0, dot);
+            return name.EndsWith(".tar", StringComparison.OrdinalIgnoreCase) ? name : name + ".tar";
         }
 
         public bool Test(ProgressReporter r)
@@ -220,7 +329,7 @@ namespace Kudupack.Core
             {
                 using (var ex = NewExtractor(WorkingPath))
                 {
-                    Hook(ex, r);
+                    Hook(ex, r, null);
                     ok = ex.Check();
                 }
             });
@@ -335,12 +444,14 @@ namespace Kudupack.Core
         private SevenZipExtractor NewExtractor(string path) =>
             string.IsNullOrEmpty(Password) ? new SevenZipExtractor(path) : new SevenZipExtractor(path, Password);
 
-        private static void Hook(SevenZipExtractor ex, ProgressReporter r)
+        private static void Hook(SevenZipExtractor ex, ProgressReporter r, HashSet<int> skip)
         {
             ex.Extracting += (s, e) => r.Percent(e.PercentDone);
+            // The engine raises this before it creates the file or folder, so skipped entries are never written.
             ex.FileExtractionStarted += (s, e) =>
             {
                 if (r.Token.IsCancellationRequested) e.Cancel = true;
+                else if (skip != null && skip.Contains(e.FileInfo.Index)) e.Skip = true;
             };
         }
 

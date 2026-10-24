@@ -1,0 +1,23 @@
+<Window x:Class="Kudupack.Views.OverwriteWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Files already exist - KUDUPACK" Width="480" SizeToContent="Height" ResizeMode="NoResize"
+        WindowStartupLocation="CenterOwner" ShowInTaskbar="False"
+        Icon="/KUDUPACK;component/Assets/KUDUPACK.ico"
+        Background="{DynamicResource WindowBg}" Foreground="{DynamicResource Text}"
+        FontFamily="{StaticResource UiFont}" FontSize="13">
+    <StackPanel Margin="24,20">
+        <TextBlock x:Name="HeadingText" FontSize="16" FontWeight="SemiBold" TextWrapping="Wrap"/>
+        <TextBlock x:Name="MessageText" Style="{StaticResource Subtle}" FontSize="13" Margin="0,6,0,12" TextWrapping="Wrap"/>
+        <TextBlock x:Name="NamesText" FontSize="13" TextWrapping="Wrap" Margin="0,0,0,4"/>
+        <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0,20,0,0">
+            <Button Content="Cancel" Style="{StaticResource SecondaryButton}" IsCancel="True" Margin="0,0,10,0"/>
+            <Button x:Name="SkipButton" Content="Skip them" Style="{StaticResource SecondaryButton}" Click="Skip_Click" Margin="0,0,10,0"
+                    ToolTip="Leave the files that are already there and don't extract these"/>
+            <Button x:Name="ReplaceButton" Content="Replace" Style="{StaticResource SecondaryButton}" Click="Replace_Click" Margin="0,0,10,0"
+                    ToolTip="Overwrite the files that are already there"/>
+            <Button x:Name="KeepButton" Content="Keep both" Style="{StaticResource PrimaryButton}" IsDefault="True" Click="Keep_Click" MinWidth="90"
+                    ToolTip="Extract these with a number added to their names, like report (2).pdf"/>
+        </StackPanel>
+    </StackPanel>
+</Window>

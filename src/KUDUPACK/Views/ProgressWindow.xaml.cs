@@ -54,7 +54,7 @@ namespace Kudupack.Views
                 PercentText.Text = p + "%";
             });
             var status = new Progress<string>(text => StatusText.Text = text);
-            var reporter = new ProgressReporter(percent, status, _cts.Token, AskPassword);
+            var reporter = new ProgressReporter(percent, status, _cts.Token, AskPassword, AskOverwrite);
 
             try
             {
@@ -82,6 +82,12 @@ namespace Kudupack.Views
         private string AskPassword(string message)
         {
             return Dispatcher.Invoke(() => PasswordWindow.Ask(this, message));
+        }
+
+        /// <summary>Called from the background thread; asks about existing files on the UI thread.</summary>
+        private OverwriteChoice AskOverwrite(OverwriteQuestion question)
+        {
+            return Dispatcher.Invoke(() => OverwriteWindow.Ask(this, question));
         }
 
         private void Cancel_Click(object sender, RoutedEventArgs e)

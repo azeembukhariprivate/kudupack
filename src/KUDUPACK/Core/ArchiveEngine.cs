@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Threading;
@@ -6,24 +7,43 @@ using SevenZip;
 
 namespace Kudupack.Core
 {
+    /// <summary>What to do with files that already exist where an archive is being extracted.</summary>
+    public enum OverwriteChoice { Replace, KeepBoth, Skip, Cancel }
+
+    /// <summary>Files an extraction would replace, for asking the user what to do.</summary>
+    public sealed class OverwriteQuestion
+    {
+        public string Folder { get; set; }
+
+        /// <summary>The existing files' paths relative to <see cref="Folder"/>.</summary>
+        public List<string> Names { get; set; }
+    }
+
     /// <summary>Progress, status text and cancellation passed to background work.</summary>
     public sealed class ProgressReporter
     {
         private readonly IProgress<int> _percent;
         private readonly IProgress<string> _status;
+        private readonly Func<OverwriteQuestion, OverwriteChoice> _askOverwrite;
 
-        public ProgressReporter(IProgress<int> percent, IProgress<string> status, CancellationToken token, Func<string, string> askPassword)
+        public ProgressReporter(IProgress<int> percent, IProgress<string> status, CancellationToken token, Func<string, string> askPassword,
+            Func<OverwriteQuestion, OverwriteChoice> askOverwrite = null)
         {
             _percent = percent;
             _status = status;
             Token = token;
             AskPassword = askPassword;
+            _askOverwrite = askOverwrite;
         }
 
         public CancellationToken Token { get; }
 
         /// <summary>Asks the user for a password on the UI thread. Returns null if cancelled.</summary>
         public Func<string, string> AskPassword { get; }
+
+        /// <summary>Asks the user on the UI thread what to do with existing files. Without a window to ask, both are kept.</summary>
+        public OverwriteChoice AskOverwrite(OverwriteQuestion question) =>
+            _askOverwrite == null ? OverwriteChoice.KeepBoth : _askOverwrite(question);
 
         public void Percent(int value) => _percent?.Report(Math.Max(0, Math.Min(100, value)));
         public void Status(string text) => _status?.Report(text);
@@ -34,7 +54,7 @@ namespace Kudupack.Core
             var parent = this;
             return new ProgressReporter(
                 new Progress<int>(p => parent.Percent(from + (to - from) * p / 100)),
-                _status, Token, AskPassword);
+                _status, Token, AskPassword, _askOverwrite);
         }
 
         public static ProgressReporter None => new ProgressReporter(null, null, CancellationToken.None, _ => null);

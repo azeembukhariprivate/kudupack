@@ -6,6 +6,12 @@
 
 <p align="center">A lightweight archive tool for Windows. Open, extract and create ZIP, 7Z, RAR, TAR.GZ and more.</p>
 
+<p align="center">
+  <a href="https://github.com/azeembukhariprivate/kudupack/releases/latest/download/KUDUPACK-setup.exe"><img src="https://img.shields.io/badge/Download-KUDUPACK%20for%20Windows-2ea44f?style=for-the-badge" alt="Download KUDUPACK for Windows"></a>
+  <br>
+  <sub>The installer for Windows 10 and 11, always the latest version · <a href="https://github.com/azeembukhariprivate/kudupack/releases/latest">portable zip and what's new</a></sub>
+</p>
+
 ---
 
 ## Features
@@ -18,6 +24,8 @@
 - **Drag files out** of an archive straight into any folder, or drop files in to add them (ZIP and 7Z).
 - **Extract many archives at once**, each into its own folder.
 - **File Explorer integration**: *Extract here*, *Extract to folder* and *Add to archive* in the right-click menu, and double-click to open archives.
+- **Safe extraction**: files never land outside the folder you chose, even from archives with names like `..\..\Startup\evil.exe` made to trick extractors; KUDUPACK leaves those out and tells you.
+- **Never overwrites silently**: when files with the same names are already there, choose to replace them, keep both (the new copy gets a number, like `report (2).pdf`) or skip them.
 - **Optional clean-up**: move the archive to the Recycle Bin after a successful extract.
 - **Light and dark mode**, following your Windows setting.
 - **Update check** against this repository's releases. Nothing is downloaded without asking.
@@ -26,7 +34,7 @@ RAR archives can be opened and extracted, but not created.
 
 ## Download
 
-Get the latest version from the [Releases page](https://github.com/azeembukhariprivate/KUDUPACK/releases/latest):
+**[Download the installer](https://github.com/azeembukhariprivate/kudupack/releases/latest/download/KUDUPACK-setup.exe)** (`KUDUPACK-setup.exe`, always the latest version), or get any of these from the [Releases page](https://github.com/azeembukhariprivate/kudupack/releases/latest):
 
 - `KUDUPACK-x.y.z-setup.exe`: installs for your user account, adds a Start menu entry, and can add the right-click menu.
 - `KUDUPACK-x.y.z-portable.zip`: unzip anywhere and run `KUDUPACK.exe`. Nothing is installed.
@@ -55,22 +63,21 @@ KUDUPACK.exe --add "file or folder"           open the Create archive window
 You need Windows with the [.NET SDK](https://dotnet.microsoft.com/download) (8 or later) installed.
 
 ```
-git clone https://github.com/azeembukhariprivate/KUDUPACK.git
-cd KUDUPACK
+git clone https://github.com/azeembukhariprivate/kudupack.git
+cd kudupack
+dotnet run --project tests/KUDUPACK.Tests
 dotnet build src/KUDUPACK/KUDUPACK.csproj -c Release -o out/KUDUPACK
 ```
+
+The tests check that extracting never writes outside the chosen folder (archives with names like `..\..\evil.exe` or `\Windows\…`) and that files already there are replaced, kept or skipped as chosen. They build real harmful ZIP files and extract them, which needs Windows; on other systems only the name checks run.
 
 The app is in `out/KUDUPACK`. To build the installer, install [Inno Setup 6](https://jrsoftware.org/isinfo.php) and compile `installer/KUDUPACK.iss`.
 
 ## Publishing a new version
 
 1. Change `<Version>` in `src/KUDUPACK/KUDUPACK.csproj`.
-2. Commit, then create and push a tag with the same number:
-   ```
-   git tag v1.0.1
-   git push origin v1.0.1
-   ```
-3. GitHub Actions builds the app and publishes the installer and portable zip on the Releases page.
+2. Commit and push to `main`.
+3. GitHub Actions tests and builds the app. When no release exists yet for that version, it creates the `v` tag and publishes the installer and portable zip on the Releases page. Pushes that keep the same version only build.
 
 ## License
 

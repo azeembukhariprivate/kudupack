@@ -22,6 +22,7 @@ namespace Kudupack.Views
 
             var done = new List<(string Archive, string Destination, bool MultiVolume)>();
             var failures = new List<string>();
+            var report = new ExtractReport();
             var title = archives.Count == 1 ? "Extracting " + Path.GetFileName(archives[0]) : $"Extracting {archives.Count} archives";
 
             var result = ProgressWindow.Run(owner, title, "Starting…", r =>
@@ -40,7 +41,7 @@ namespace Kudupack.Views
                                 ? Paths.UniqueFolder(parent, Paths.ArchiveBaseName(archive))
                                 : parent;
                             r.Status($"Extracting {Path.GetFileName(archive)} ({i + 1} of {archives.Count})");
-                            session.ExtractAll(destination, slice);
+                            report.Add(session.ExtractAll(destination, slice));
                             done.Add((archive, destination, session.IsMultiVolume));
                         }
                     }
@@ -62,7 +63,10 @@ namespace Kudupack.Views
                 return;
             }
 
-            AfterExtract(owner, done.Select(d => (d.Archive, d.Destination, d.MultiVolume)).ToList());
+            if (report.UnsafeWarning() is string warning) Dialogs.Error(owner, warning);
+
+            // An archive with harmful names is never moved to the Recycle Bin, so the user can still report it.
+            AfterExtract(owner, done.Select(d => (d.Archive, d.Destination, d.MultiVolume)).ToList(), keepArchives: report.Unsafe.Count > 0);
 
             if (failures.Count > 0)
             {
@@ -72,7 +76,7 @@ namespace Kudupack.Views
         }
 
         /// <summary>Opens the result folder and, if the user turned it on, recycles the archive.</summary>
-        public static void AfterExtract(Window owner, IList<(string Archive, string Destination, bool MultiVolume)> done)
+        public static void AfterExtract(Window owner, IList<(string Archive, string Destination, bool MultiVolume)> done, bool keepArchives = false)
         {
             if (done.Count == 0) return;
 
@@ -82,7 +86,7 @@ namespace Kudupack.Views
                     OpenFolder(folder);
             }
 
-            if (!Settings.DeleteAfterExtract) return;
+            if (!Settings.DeleteAfterExtract || keepArchives) return;
 
             foreach (var item in done)
             {

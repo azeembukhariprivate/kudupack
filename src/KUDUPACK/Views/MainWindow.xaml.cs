@@ -465,8 +465,9 @@ namespace Kudupack.Views
         {
             var session = _session;
             var temp = Paths.NewTempFolder("view");
+            ExtractReport report = null;
             var result = ProgressWindow.Run(this, "Opening " + node.Name, "Extracting to a temporary folder…",
-                r => session.ExtractIndexes(temp, new[] { node.Index }, r));
+                r => report = session.ExtractIndexes(temp, new[] { node.Index }, r));
 
             if (result.Outcome == OperationOutcome.Failed)
             {
@@ -474,9 +475,14 @@ namespace Kudupack.Views
                 return;
             }
             if (!result.Ok) return;
+            if (report?.UnsafeWarning() is string warning)
+            {
+                Dialogs.Error(this, warning);
+                return;
+            }
 
-            var path = Path.Combine(temp, node.FullPath);
-            if (!File.Exists(path))
+            var path = Paths.EntryTarget(temp, node.FullPath);
+            if (path == null || !File.Exists(path))
                 path = Directory.GetFiles(temp, node.Name, SearchOption.AllDirectories).FirstOrDefault();
             if (path == null) return;
 
@@ -518,11 +524,12 @@ namespace Kudupack.Views
             var searching = _searching;
             var baseFolder = searching ? string.Empty : _current?.FullPath ?? string.Empty;
 
+            ExtractReport report = null;
             var result = ProgressWindow.Run(this, "Extracting " + session.DisplayName, "Extracting to " + destination, r =>
             {
                 if (nodes == null)
                 {
-                    session.ExtractAll(destination, r);
+                    report = session.ExtractAll(destination, r);
                     return;
                 }
 
@@ -533,16 +540,33 @@ namespace Kudupack.Views
                 var temp = Paths.NewTempFolder("extract");
                 try
                 {
-                    session.ExtractIndexes(temp, indexes, r);
-                    var source = string.IsNullOrEmpty(baseFolder) ? temp : Path.Combine(temp, baseFolder);
+                    report = session.ExtractIndexes(temp, indexes, r);
+                    var moves = new List<(string From, string To)>();
                     if (searching)
                     {
-                        foreach (var node in nodes) MoveInto(Path.Combine(temp, node.FullPath), destination);
+                        foreach (var node in nodes)
+                        {
+                            var from = Paths.EntryTarget(temp, node.FullPath);
+                            if (from != null) moves.Add((from, Path.Combine(destination, node.Name)));
+                        }
                     }
-                    else if (Directory.Exists(source))
+                    else
                     {
-                        foreach (var entry in Directory.GetFileSystemEntries(source)) MoveInto(entry, destination);
+                        var source = string.IsNullOrEmpty(baseFolder) ? temp : Paths.EntryTarget(temp, baseFolder);
+                        if (source != null && Directory.Exists(source))
+                            foreach (var entry in Directory.GetFileSystemEntries(source))
+                                moves.Add((entry, Path.Combine(destination, Path.GetFileName(entry))));
                     }
+
+                    var clashes = new List<string>();
+                    foreach (var m in moves) FindClashes(m.From, m.To, destination, clashes);
+                    var choice = OverwriteChoice.Replace;
+                    if (clashes.Count > 0)
+                    {
+                        choice = r.AskOverwrite(new OverwriteQuestion { Folder = destination, Names = clashes });
+                        if (choice == OverwriteChoice.Cancel) throw new OperationCanceledException();
+                    }
+                    foreach (var m in moves) MoveInto(m.From, m.To, choice);
                 }
                 finally
                 {
@@ -556,10 +580,11 @@ namespace Kudupack.Views
                 return;
             }
             if (!result.Ok) return;
+            if (report?.UnsafeWarning() is string warning) Dialogs.Error(this, warning);
 
             if (Settings.OpenFolderAfterExtract) Operations.OpenFolder(destination);
 
-            if (nodes == null && Settings.DeleteAfterExtract && !session.IsMultiVolume)
+            if (nodes == null && Settings.DeleteAfterExtract && !session.IsMultiVolume && report?.Unsafe.Count == 0)
             {
                 var source = session.SourcePath;
                 CloseArchive();
@@ -572,30 +597,44 @@ namespace Kudupack.Views
             }
         }
 
-        /// <summary>Moves a file or folder into a destination folder, renaming on name clashes.</summary>
-        private static void MoveInto(string sourcePath, string destinationFolder)
+        /// <summary>Lists the files a move would land on (relative to the destination folder).</summary>
+        private static void FindClashes(string sourcePath, string targetPath, string destination, List<string> clashes)
         {
-            var name = Path.GetFileName(sourcePath);
             if (File.Exists(sourcePath))
             {
-                File.Move(sourcePath, UniqueFilePath(destinationFolder, name));
+                if (File.Exists(targetPath)) clashes.Add(targetPath.Substring(destination.TrimEnd('\\').Length).TrimStart('\\'));
             }
-            else if (Directory.Exists(sourcePath))
+            else if (Directory.Exists(sourcePath) && Directory.Exists(targetPath))
             {
-                var target = Path.Combine(destinationFolder, name);
-                Directory.CreateDirectory(target);
-                foreach (var entry in Directory.GetFileSystemEntries(sourcePath)) MoveInto(entry, target);
+                foreach (var entry in Directory.GetFileSystemEntries(sourcePath))
+                    FindClashes(entry, Path.Combine(targetPath, Path.GetFileName(entry)), destination, clashes);
             }
         }
 
-        private static string UniqueFilePath(string folder, string name)
+        /// <summary>Moves a file or folder to a path, merging folders and handling existing files as the user chose.</summary>
+        private static void MoveInto(string sourcePath, string targetPath, OverwriteChoice choice)
         {
-            var path = Path.Combine(folder, name);
-            var stem = Path.GetFileNameWithoutExtension(name);
-            var ext = Path.GetExtension(name);
-            var i = 2;
-            while (File.Exists(path) || Directory.Exists(path)) path = Path.Combine(folder, $"{stem} ({i++}){ext}");
-            return path;
+            if (File.Exists(sourcePath))
+            {
+                if (File.Exists(targetPath))
+                {
+                    if (choice == OverwriteChoice.Skip) return;
+                    if (choice == OverwriteChoice.Replace)
+                    {
+                        File.Copy(sourcePath, targetPath, true);
+                        File.Delete(sourcePath);
+                        return;
+                    }
+                }
+                File.Move(sourcePath, Paths.UniqueFilePath(Path.GetDirectoryName(targetPath), Path.GetFileName(targetPath)));
+            }
+            else if (Directory.Exists(sourcePath))
+            {
+                if (File.Exists(targetPath)) targetPath = Paths.UniqueFilePath(Path.GetDirectoryName(targetPath), Path.GetFileName(targetPath));
+                Directory.CreateDirectory(targetPath);
+                foreach (var entry in Directory.GetFileSystemEntries(sourcePath))
+                    MoveInto(entry, Path.Combine(targetPath, Path.GetFileName(entry)), choice);
+            }
         }
 
         private async void AddFiles_Click(object sender, RoutedEventArgs e)
@@ -894,8 +933,8 @@ namespace Kudupack.Views
                 Mouse.OverrideCursor = null;
             }
 
-            var paths = nodes.Select(n => Path.Combine(temp, n.FullPath))
-                .Where(p => File.Exists(p) || Directory.Exists(p))
+            var paths = nodes.Select(n => Paths.EntryTarget(temp, n.FullPath))
+                .Where(p => p != null && (File.Exists(p) || Directory.Exists(p)))
                 .ToArray();
             if (paths.Length == 0) return;
 
