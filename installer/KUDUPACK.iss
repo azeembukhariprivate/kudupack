@@ -2,7 +2,7 @@
 ; Installs for the current Windows user only, so it never asks for administrator rights.
 
 #ifndef MyAppVersion
-  #define MyAppVersion "1.0.1"
+  #define MyAppVersion "1.0.2"
 #endif
 #ifndef SourceDir
   #define SourceDir "..\out\KUDUPACK"

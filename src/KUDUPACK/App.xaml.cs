@@ -13,6 +13,7 @@ namespace Kudupack
         {
             base.OnStartup(e);
             DispatcherUnhandledException += OnUnhandledException;
+            EventManager.RegisterClassHandler(typeof(System.Windows.Controls.Button), FrameworkElement.LoadedEvent, new RoutedEventHandler(NameButton));
 
             var cmd = CommandLine.Parse(e.Args);
 
@@ -68,6 +69,28 @@ namespace Kudupack
             MainWindow = main;
             ShutdownMode = ShutdownMode.OnMainWindowClose;
             main.Show();
+        }
+
+        /// <summary>
+        /// Screen readers can't read a name from a button whose content is an icon and text in a panel, so each button
+        /// without one is named after the text it shows (or its tooltip, for icon-only buttons).
+        /// </summary>
+        private static void NameButton(object sender, RoutedEventArgs e)
+        {
+            var button = (System.Windows.Controls.Button)sender;
+            if (!string.IsNullOrEmpty(System.Windows.Automation.AutomationProperties.GetName(button)) || button.Content is string) return;
+            var text = button.Content is DependencyObject content
+                ? string.Join(" ", Texts(content).Where(t => !string.IsNullOrWhiteSpace(t)))
+                : string.Empty;
+            if (string.IsNullOrWhiteSpace(text)) text = button.ToolTip as string;
+            if (!string.IsNullOrWhiteSpace(text)) System.Windows.Automation.AutomationProperties.SetName(button, text.Trim());
+        }
+
+        private static System.Collections.Generic.IEnumerable<string> Texts(DependencyObject root)
+        {
+            if (root is System.Windows.Controls.TextBlock tb) yield return tb.Text;
+            foreach (var child in LogicalTreeHelper.GetChildren(root).OfType<DependencyObject>())
+                foreach (var t in Texts(child)) yield return t;
         }
 
         private void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
