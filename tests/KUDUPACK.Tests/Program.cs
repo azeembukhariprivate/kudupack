@@ -173,6 +173,29 @@ namespace Kudupack.Tests
             Check(!File.Exists(Path.Combine(work, "evil1.txt")), "selection: nothing outside");
         }
 
+        private static void TestWindowsDownloadedMarkIsKept()
+        {
+            const string mark = "[ZoneTransfer]\r\nZoneId=3\r\nHostUrl=https://example.com/a.zip\r\n";
+            var work = Folder("zone");
+            var zip = MakeZip(Path.Combine(work, "downloaded.zip"), ("a.txt", "a"), ("sub/b.exe", "b"));
+            ZoneMark.Apply(new[] { zip }, mark);
+            Check(ZoneMark.Read(zip)?.Contains("ZoneId=3") == true, "test archive has the mark");
+
+            var dest = Path.Combine(work, "out");
+            using (var s = ArchiveSession.Open(zip, ProgressReporter.None)) s.ExtractAll(dest, Answer(OverwriteChoice.Replace));
+            Equal(mark, ZoneMark.Read(Path.Combine(dest, "a.txt")), "a.txt keeps the mark");
+            Equal(mark, ZoneMark.Read(Path.Combine(dest, "sub", "b.exe")), "sub\\b.exe keeps the mark");
+
+            // "Keep both" copies are marked too.
+            using (var s = ArchiveSession.Open(zip, ProgressReporter.None)) s.ExtractAll(dest, Answer(OverwriteChoice.KeepBoth));
+            Equal(mark, ZoneMark.Read(Path.Combine(dest, "a (2).txt")), "a (2).txt keeps the mark");
+
+            // An archive without the mark gives files without it.
+            var local = MakeZip(Path.Combine(work, "local.zip"), ("c.txt", "c"));
+            using (var s = ArchiveSession.Open(local, ProgressReporter.None)) s.ExtractAll(dest, Answer(OverwriteChoice.Replace));
+            Check(ZoneMark.Read(Path.Combine(dest, "c.txt")) == null, "c.txt has no mark");
+        }
+
         private static void TestWindowsExistingFilesFollowTheChoice()
         {
             var work = Folder("clash");

@@ -15,11 +15,11 @@
 
   <ItemGroup>
     <PackageReference Include="Squid-Box.SevenZipSharp" Version="1.6.2.24" />
-    <PackageReference Include="7z.Libs" Version="24.9.0" GeneratePathProperty="true" />
+    <PackageReference Include="7z.Libs" Version="26.4.0" GeneratePathProperty="true" />
   </ItemGroup>
 
   <ItemGroup>
-    <Compile Include="..\..\src\KUDUPACK\Core\ArchiveSession.cs;..\..\src\KUDUPACK\Core\ArchiveEngine.cs;..\..\src\KUDUPACK\Core\ArchiveNode.cs;..\..\src\KUDUPACK\Core\ArchiveCreator.cs;..\..\src\KUDUPACK\Core\Paths.cs" LinkBase="Core" />
+    <Compile Include="..\..\src\KUDUPACK\Core\ArchiveSession.cs;..\..\src\KUDUPACK\Core\ArchiveEngine.cs;..\..\src\KUDUPACK\Core\ArchiveNode.cs;..\..\src\KUDUPACK\Core\ArchiveCreator.cs;..\..\src\KUDUPACK\Core\Paths.cs;..\..\src\KUDUPACK\Core\ZoneMark.cs" LinkBase="Core" />
     <None Include="$(Pkg7z_Libs)\bin\x64\7z.dll" Link="x64\7z.dll" CopyToOutputDirectory="PreserveNewest" Visible="false" />
   </ItemGroup>
 

@@ -234,6 +234,7 @@ namespace Kudupack.Core
             var wanted = indexes == null ? null : new HashSet<int>(indexes);
             var skip = new HashSet<int>();
             var existing = new List<(int Index, string Name, string Target)>();
+            var written = new List<(int Index, string Target)>();
 
             foreach (var e in _entries)
             {
@@ -245,9 +246,10 @@ namespace Kudupack.Core
                     skip.Add(e.Index);
                     report.Unsafe.Add(name);
                 }
-                else if (!e.IsDirectory && File.Exists(target))
+                else if (!e.IsDirectory)
                 {
-                    existing.Add((e.Index, name, target));
+                    if (File.Exists(target)) existing.Add((e.Index, name, target));
+                    written.Add((e.Index, target));
                 }
             }
 
@@ -279,6 +281,10 @@ namespace Kudupack.Core
                 }
             });
 
+            var marked = new List<string>();
+            foreach (var w in written)
+                if (!skip.Contains(w.Index)) marked.Add(w.Target);
+
             if (choice == OverwriteChoice.KeepBoth)
             {
                 // Extract the clashing files on their own, then move each one in beside the file it would have replaced.
@@ -298,7 +304,9 @@ namespace Kudupack.Core
                     {
                         var extracted = Paths.EntryTarget(temp, x.Name);
                         if (extracted == null || !File.Exists(extracted)) continue;
-                        File.Move(extracted, Paths.UniqueFilePath(Path.GetDirectoryName(x.Target), Path.GetFileName(x.Target)));
+                        var moved = Paths.UniqueFilePath(Path.GetDirectoryName(x.Target), Path.GetFileName(x.Target));
+                        File.Move(extracted, moved);
+                        marked.Add(moved);
                         report.KeptBoth++;
                     }
                 }
@@ -308,6 +316,8 @@ namespace Kudupack.Core
                 }
             }
 
+            // Files from a downloaded archive keep the "downloaded from the internet" mark, so Windows still warns about them.
+            ZoneMark.Apply(marked, ZoneMark.Read(SourcePath));
             return report;
         }
 

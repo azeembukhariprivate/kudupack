@@ -14,7 +14,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
-    <Version>1.0.0</Version>
+    <Version>1.0.1</Version>
     <Product>KUDUPACK</Product>
     <Company>Azeem</Company>
     <Authors>Azeem</Authors>
@@ -32,7 +32,7 @@
 
   <ItemGroup>
     <PackageReference Include="Squid-Box.SevenZipSharp" Version="1.6.2.24" />
-    <PackageReference Include="7z.Libs" Version="24.9.0" GeneratePathProperty="true" />
+    <PackageReference Include="7z.Libs" Version="26.4.0" GeneratePathProperty="true" />
     <PackageReference Include="Microsoft.NETFramework.ReferenceAssemblies" Version="1.0.3" PrivateAssets="all" />
   </ItemGroup>
 

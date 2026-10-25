@@ -25,6 +25,7 @@
 - **Extract many archives at once**, each into its own folder.
 - **File Explorer integration**: *Extract here*, *Extract to folder* and *Add to archive* in the right-click menu, and double-click to open archives.
 - **Safe extraction**: files never land outside the folder you chose, even from archives with names like `..\..\Startup\evil.exe` made to trick extractors; KUDUPACK leaves those out and tells you.
+- **Keeps Windows' download warning**: files extracted from an archive you downloaded keep the "downloaded from the internet" mark, so Windows SmartScreen and Office's Protected View still warn before opening them, as with File Explorer.
 - **Never overwrites silently**: when files with the same names are already there, choose to replace them, keep both (the new copy gets a number, like `report (2).pdf`) or skip them.
 - **Optional clean-up**: move the archive to the Recycle Bin after a successful extract.
 - **Light and dark mode**, following your Windows setting.
