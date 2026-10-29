@@ -109,6 +109,9 @@ namespace Kudupack.Core
                 var innerName = NameOf(Normalize(data[0].FileName));
                 if (!innerName.EndsWith(".tar", StringComparison.OrdinalIgnoreCase))
                     innerName = Paths.ArchiveBaseName(SourcePath) + ".tar";
+                // The name comes from inside the archive: keep it a plain file name (a name like "C:x.tar" would point
+                // somewhere else on the disk).
+                innerName = new string(innerName.Select(c => c < 32 || Path.GetInvalidFileNameChars().Contains(c) ? '_' : c).ToArray());
                 var tarPath = Path.Combine(_tempDir, innerName);
 
                 using (var ex = NewExtractor(SourcePath))
