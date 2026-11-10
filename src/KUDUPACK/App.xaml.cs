@@ -13,6 +13,17 @@ namespace Kudupack
         {
             base.OnStartup(e);
             DispatcherUnhandledException += OnUnhandledException;
+            // An error behind the window can't be recovered from: say so, instead of just vanishing.
+            AppDomain.CurrentDomain.UnhandledException += (s, x) =>
+            {
+                if (!x.IsTerminating) return;
+                try
+                {
+                    MessageBox.Show("KUDUPACK ran into a problem it couldn't get past, and has to close.\n\n" + (x.ExceptionObject as Exception)?.Message,
+                        "KUDUPACK", MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                catch (Exception) { /* nothing more can be done */ }
+            };
             EventManager.RegisterClassHandler(typeof(System.Windows.Controls.Button), FrameworkElement.LoadedEvent, new RoutedEventHandler(NameButton));
 
             var cmd = CommandLine.Parse(e.Args);
