@@ -141,7 +141,7 @@ namespace Kudupack.Views
             var size = _inputs.Sum(i => i.Size);
             InputSummary.Text = _inputs.Count == 0
                 ? string.Empty
-                : $"{files} file(s), {folders} folder(s)" + (files > 0 ? $" · {Paths.FormatSize(size)} in files" : string.Empty);
+                : Lang.T("{0} file(s), {1} folder(s)", files, folders) + (files > 0 ? " · " + Lang.T("{0} in files", Paths.FormatSize(size)) : string.Empty);
             if (!_nameEdited) SuggestName();
         }
 

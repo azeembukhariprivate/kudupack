@@ -27,10 +27,12 @@ namespace Kudupack.Core
         public string UnsafeWarning()
         {
             if (Unsafe.Count == 0) return null;
-            var list = string.Join("\n", Unsafe.Take(8)) + (Unsafe.Count > 8 ? $"\n…and {Unsafe.Count - 8} more" : string.Empty);
-            return (Unsafe.Count == 1 ? "1 item wasn't" : $"{Unsafe.Count} items weren't") +
-                   " extracted because its name would put it outside the folder you chose, or uses a name Windows reserves. " +
-                   "Archives made to harm a PC use names like these, so be careful with the rest of this archive.\n\n" + list;
+            var list = string.Join("\n", Unsafe.Take(8)) + (Unsafe.Count > 8 ? "\n" + Lang.T("…and {0} more", Unsafe.Count - 8) : string.Empty);
+            // Whole sentences, so they can be put into the language in use.
+            return (Unsafe.Count == 1
+                       ? Lang.T("1 item wasn't extracted because its name would put it outside the folder you chose, or uses a name Windows reserves. Archives made to harm a PC use names like these, so be careful with the rest of this archive.")
+                       : Lang.T("{0} items weren't extracted because their names would put them outside the folder you chose, or use names Windows reserves. Archives made to harm a PC use names like these, so be careful with the rest of this archive.", Unsafe.Count)) +
+                   "\n\n" + list;
         }
     }
 
@@ -406,18 +408,18 @@ namespace Kudupack.Core
         public string Describe()
         {
             var ratio = UnpackedSize > 0 && PackedSize > 0
-                ? $" ({Math.Max(0, 100 - (int)(PackedSize * 100.0 / UnpackedSize))}% smaller)"
+                ? Lang.T(" ({0}% smaller)", Math.Max(0, 100 - (int)(PackedSize * 100.0 / UnpackedSize)))
                 : string.Empty;
             var lines = new List<string>
             {
-                "File: " + SourcePath,
-                "Format: " + FormatName,
-                $"Contents: {AllFiles.Count} files, {FolderCount} folders",
-                "Original size: " + Paths.FormatSize(UnpackedSize),
-                "Archive size: " + Paths.FormatSize(PackedSize) + ratio,
-                "Password protected: " + (HasEncrypted || !string.IsNullOrEmpty(Password) ? "Yes" : "No")
+                Lang.T("File: {0}", SourcePath),
+                Lang.T("Format: {0}", FormatName),
+                Lang.T("Contents: {0} files, {1} folders", AllFiles.Count, FolderCount),
+                Lang.T("Original size: {0}", Paths.FormatSize(UnpackedSize)),
+                Lang.T("Archive size: {0}", Paths.FormatSize(PackedSize) + ratio),
+                Lang.T("Password protected: {0}", Lang.T(HasEncrypted || !string.IsNullOrEmpty(Password) ? "Yes" : "No"))
             };
-            if (IsMultiVolume) lines.Add("Parts: " + VolumeFiles.Count);
+            if (IsMultiVolume) lines.Add(Lang.T("Parts: {0}", VolumeFiles.Count));
             return string.Join(Environment.NewLine, lines);
         }
 

@@ -29,6 +29,7 @@
 - **Never overwrites silently**: when files with the same names are already there, choose to replace them, keep both (the new copy gets a number, like `report (2).pdf`) or skip them.
 - **Optional clean-up**: move the archive to the Recycle Bin after a successful extract.
 - **Light and dark mode**, following your Windows setting.
+- **In your language:** English, Malayalam (മലയാളം), Hindi (हिन्दी), Spanish, French and Arabic (with the windows mirrored for right-to-left). KUDUPACK starts in the same language as Windows when it has it; choose another in Settings.
 - **Update check** against this repository's releases. Nothing is downloaded without asking.
 
 RAR archives can be opened and extracted, but not created.

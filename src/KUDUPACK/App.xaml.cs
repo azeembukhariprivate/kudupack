@@ -19,12 +19,14 @@ namespace Kudupack
                 if (!x.IsTerminating) return;
                 try
                 {
-                    MessageBox.Show("KUDUPACK ran into a problem it couldn't get past, and has to close.\n\n" + (x.ExceptionObject as Exception)?.Message,
+                    MessageBox.Show(Lang.T("KUDUPACK ran into a problem it couldn't get past, and has to close.\n\n{0}", (x.ExceptionObject as Exception)?.Message),
                         "KUDUPACK", MessageBoxButton.OK, MessageBoxImage.Error);
                 }
                 catch (Exception) { /* nothing more can be done */ }
             };
             EventManager.RegisterClassHandler(typeof(System.Windows.Controls.Button), FrameworkElement.LoadedEvent, new RoutedEventHandler(NameButton));
+
+            LangUi.Start(); // KUDUPACK in the chosen language
 
             var cmd = CommandLine.Parse(e.Args);
 

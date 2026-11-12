@@ -24,6 +24,13 @@ Part of the KUDU family of free, open-source Windows apps by Azeem Bukhari.
 - It doesn't use kudu-common (it came first), and has no `--self-test`.
 - Extracting must never write outside the chosen folder (blocked "zip-slip" names like `..\..\evil.exe`) and must ask
   before replacing files already there. `tests/KUDUPACK.Tests` checks this with real harmful archives on Windows.
+- Other languages (1.1): `Core/Lang.cs` and `LangCommon.cs` are copies of kudu-common's (change both when one changes);
+  `Views/LangUi.cs` is KUDUPACK's own version of kudu-common's LangUi (the choice is kept as `AppLanguage` in the
+  registry; Settings shows it as chips like the theme). Each window is put into the chosen language as it's shown;
+  messages, file-dialog titles and texts built in code call `Lang.T` on whole sentences. The Explorer menu words stay in
+  English. Texts are in `src/KUDUPACK/Lang/<code>.txt`, listed and checked with kudu-common's
+  `tools/lang.py list|check ../kudupack` (texts only in XAML are added by hand); when adding or changing a text, add it
+  to every language file.
 
 ```
 dotnet run --project tests/KUDUPACK.Tests -c Release

@@ -17,6 +17,10 @@
                 <RadioButton x:Name="ThemeDark" GroupName="Theme" Content="Dark" Style="{StaticResource ChipRadio}" Checked="Theme_Checked"/>
             </WrapPanel>
 
+            <TextBlock Text="Language" Style="{StaticResource Heading}" Margin="0,14,0,8"/>
+            <WrapPanel x:Name="LanguageChips" AutomationProperties.Name="Language"/>
+            <TextBlock x:Name="LanguageNote" Text="The language changes the next time you start KUDUPACK." Style="{StaticResource Subtle}" Margin="0,4,0,0"/>
+
             <TextBlock Text="After extracting" Style="{StaticResource Heading}" Margin="0,14,0,4"/>
             <CheckBox x:Name="OpenFolder" Content="Open the folder with the extracted files" Click="Option_Click"/>
             <CheckBox x:Name="DeleteArchive" Content="Move the archive to the Recycle Bin" Click="Option_Click"/>

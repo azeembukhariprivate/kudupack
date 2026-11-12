@@ -1,0 +1,253 @@
+KUDUPACK ran into a problem it couldn't get past, and has to close.\n\n{0}	KUDUPACK को एक ऐसी समस्या आई जिसे वह पार नहीं कर सका, इसलिए उसे बंद होना पड़ रहा है।\n\n{0}
+Something went wrong:\n\n{0}	कुछ गड़बड़ हो गई:\n\n{0}
+Azeem	Azeem
+Collecting files…	फ़ाइलें इकट्ठी की जा रही हैं…
+There are no files to add.	जोड़ने के लिए कोई फ़ाइल नहीं है।
+Compressing…	छोटा किया जा रहा है…
+Packing…	पैक किया जा रहा है…
+Archives	आर्काइव
+All files	सभी फ़ाइलें
+The archive engine (7z.dll) is missing. Please reinstall KUDUPACK.	आर्काइव इंजन (7z.dll) नहीं मिला। कृपया KUDUPACK फिर से इंस्टॉल करें।
+Folder	फ़ोल्डर
+File	फ़ाइल
+{0} file	{0} फ़ाइल
+…and {0} more	…और {0} अन्य
+1 item wasn't extracted because its name would put it outside the folder you chose, or uses a name Windows reserves. Archives made to harm a PC use names like these, so be careful with the rest of this archive.	1 चीज़ निकाली नहीं गई क्योंकि उसका नाम उसे आपके चुने फ़ोल्डर से बाहर रख देता, या वह ऐसा नाम है जो Windows ने अपने लिए रखा है। पीसी को नुकसान पहुँचाने के लिए बने आर्काइव ऐसे नाम इस्तेमाल करते हैं, इसलिए इस आर्काइव की बाकी चीज़ों से सावधान रहें।
+{0} items weren't extracted because their names would put them outside the folder you chose, or use names Windows reserves. Archives made to harm a PC use names like these, so be careful with the rest of this archive.	{0} चीज़ें निकाली नहीं गईं क्योंकि उनके नाम उन्हें आपके चुने फ़ोल्डर से बाहर रख देते, या वे ऐसे नाम हैं जो Windows ने अपने लिए रखे हैं। पीसी को नुकसान पहुँचाने के लिए बने आर्काइव ऐसे नाम इस्तेमाल करते हैं, इसलिए इस आर्काइव की बाकी चीज़ों से सावधान रहें।
+Reading {0}…	{0} पढ़ा जा रहा है…
+Unpacking the TAR inside {0}…	{0} के अंदर का TAR खोला जा रहा है…
+{0}.tar	{0}.tar
+{0} may be password-protected.	{0} पर पासवर्ड हो सकता है।
+That password didn't work for {0}. Try again.	वह पासवर्ड {0} के लिए सही नहीं था। फिर से कोशिश करें।
+Files can only be added to ZIP and 7Z archives.	फ़ाइलें सिर्फ़ ZIP और 7Z आर्काइव में जोड़ी जा सकती हैं।
+Files can only be deleted from ZIP and 7Z archives.	फ़ाइलें सिर्फ़ ZIP और 7Z आर्काइव से हटाई जा सकती हैं।
+ ({0}% smaller)	 ({0}% छोटा)
+File: {0}	फ़ाइल: {0}
+Format: {0}	प्रकार: {0}
+Contents: {0} files, {1} folders	सामग्री: {0} फ़ाइलें, {1} फ़ोल्डर
+Original size: {0}	असली आकार: {0}
+Archive size: {0}	आर्काइव का आकार: {0}
+Password protected: {0}	पासवर्ड से सुरक्षित: {0}
+Yes	हाँ
+No	नहीं
+Parts: {0}	हिस्से: {0}
+{0} is password-protected.	{0} पर पासवर्ड है।
+user	user
+Windows didn't allow KUDUPACK to write to this folder:\n{0}\n\nPick a folder in your user profile (like Desktop or Documents), or close KUDUPACK and start it with "Run as administrator".	Windows ने KUDUPACK को इस फ़ोल्डर में लिखने नहीं दिया:\n{0}\n\nअपने यूज़र प्रोफ़ाइल का कोई फ़ोल्डर चुनें (जैसे Desktop या Documents), या KUDUPACK बंद करके "Run as administrator" से चलाएँ।
+archive	archive
+^(CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9]|CONIN\\$|CONOUT\\$) *(\\..*)?$	^(CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9]|CONIN\\$|CONOUT\\$) *(\\..*)?$
+{0}.tmp	{0}.tmp
+Theme	Theme
+System	System
+Zip	Zip
+Recent	Recent
+KUDUPACK: Extract here	KUDUPACK: Extract here
+KUDUPACK: Extract to folder	KUDUPACK: Extract to folder
+KUDUPACK: Add to archive…	KUDUPACK: Add to archive…
+KUDUPACK archive	KUDUPACK archive
+Version {0}	संस्करण {0}
+Checking…	जाँच की जा रही है…
+No releases have been published yet.	अभी तक कोई रिलीज़ प्रकाशित नहीं हुई है।
+Version {0} is available.	संस्करण {0} उपलब्ध है।
+Download update	अपडेट डाउनलोड करें
+You have the latest version.	आपके पास नवीनतम संस्करण है।
+Couldn't reach GitHub. Check your internet connection.	GitHub तक नहीं पहुँच सके। अपना इंटरनेट कनेक्शन जाँचें।
+Store	बिना छोटा किए
+Fast	तेज़
+Normal	सामान्य
+Maximum	अधिकतम
+Ultra	सबसे अधिक
+{0} file(s), {1} folder(s)	{0} फ़ाइल(ें), {1} फ़ोल्डर
+{0} in files	फ़ाइलों में {0}
+Choose files to add	जोड़ने के लिए फ़ाइलें चुनें
+Choose a folder to add	जोड़ने के लिए फ़ोल्डर चुनें
+Save the archive in:	आर्काइव यहाँ सहेजें:
+Add at least one file or folder first.	पहले कम से कम एक फ़ाइल या फ़ोल्डर जोड़ें।
+Please enter a valid archive name. It can't contain \\ / : * ? " < > |	कृपया सही आर्काइव नाम दें। उसमें \\ / : * ? " < > | नहीं हो सकते
+Please choose a folder to save the archive in.	आर्काइव सहेजने के लिए एक फ़ोल्डर चुनें।
+The two passwords don't match.	दोनों पासवर्ड मेल नहीं खाते।
+The archive can't have the same name as one of the files being added.	आर्काइव का नाम जोड़ी जा रही किसी फ़ाइल जैसा नहीं हो सकता।
+{0} already exists. Replace it?	{0} पहले से मौजूद है। उसे बदल दें?
+Creating {0}	{0} बनाया जा रहा है
+Windows blocked this action for a normal user.\n\nChoose a folder in your user profile, or close KUDUPACK and start it with "Run as administrator".	Windows ने सामान्य यूज़र के लिए यह काम रोक दिया।\n\nअपने यूज़र प्रोफ़ाइल का कोई फ़ोल्डर चुनें, या KUDUPACK बंद करके "Run as administrator" से चलाएँ।
+This file couldn't be opened. It may be damaged, incomplete, or not an archive KUDUPACK supports.	यह फ़ाइल नहीं खुल सकी। यह खराब, अधूरी या ऐसा आर्काइव हो सकती है जिसे KUDUPACK नहीं खोलता।
+The archive engine reported a problem:\n\n{0}	आर्काइव इंजन ने एक समस्या बताई:\n\n{0}
+Choose archives to extract	निकालने के लिए आर्काइव चुनें
+Open an archive	एक आर्काइव खोलें
+TAR.{0}	TAR.{0}
+Right-click menu in File Explorer: {0}	File Explorer में राइट-क्लिक मेनू: {0}
+On	चालू
+Off	बंद
+{0}   ·   Version {1}	{0}   ·   संस्करण {1}
+This file no longer exists:\n{0}	यह फ़ाइल अब मौजूद नहीं है:\n{0}
+Opening {0}…	{0} खोला जा रहा है…
+{0} - KUDUPACK	{0} - KUDUPACK
+Adding and deleting works for ZIP and 7Z archives that aren't split into parts.	जोड़ना और हटाना उन्हीं ZIP और 7Z आर्काइव में होता है जो हिस्सों में बँटे न हों।
+Add files to this archive	इस आर्काइव में फ़ाइलें जोड़ें
+Delete the selected items from this archive	चुनी हुई चीज़ें इस आर्काइव से हटाएँ
+Password protected	पासवर्ड से सुरक्षित
+Select a file to preview it.	झलक देखने के लिए एक फ़ाइल चुनें।
+KUDUPACK	KUDUPACK
+No files match your search.	आपकी खोज से कोई फ़ाइल मेल नहीं खाती।
+This folder is empty.	यह फ़ोल्डर खाली है।
+{0} files, {1} folders  ·  {2} → {3}{4}	{0} फ़ाइलें, {1} फ़ोल्डर  ·  {2} → {3}{4}
+{0} selected ({1})	{0} चुनी गईं ({1})
+Search results for "{0}"	"{0}" के खोज परिणाम
+Size	आकार
+Modified	बदला गया
+Name	नाम
+Opening {0}	{0} खोला जा रहा है
+Extracting to a temporary folder…	एक अस्थायी फ़ोल्डर में निकाला जा रहा है…
+Windows doesn't have an app set up to open this type of file.	Windows में इस तरह की फ़ाइल खोलने के लिए कोई ऐप सेट नहीं है।
+Extract the {0} selected item(s) to:	चुनी हुई {0} चीज़(ें) यहाँ निकालें:
+Extract everything to:	सब कुछ यहाँ निकालें:
+Extracting {0}	{0} निकाला जा रहा है
+Extracting to {0}	{0} में निकाला जा रहा है
+{0} was extracted and moved to the Recycle Bin.	{0} निकाल लिया गया और रीसायकल बिन में भेज दिया गया।
+Add files to {0}	{0} में फ़ाइलें जोड़ें
+Adding to {0}	{0} में जोड़ा जा रहा है
+Adding files…	फ़ाइलें जोड़ी जा रही हैं…
+{0} items	{0} चीज़ें
+Delete {0} from {1}?\n\nThis can't be undone.	{1} से {0} हटाएँ?\n\nयह वापस नहीं किया जा सकता।
+Deleting from {0}	{0} से हटाया जा रहा है
+Updating the archive…	आर्काइव अपडेट किया जा रहा है…
+Testing {0}	{0} की जाँच
+Checking every file…	हर फ़ाइल जाँची जा रही है…
+No errors found in {0}.	{0} में कोई गलती नहीं मिली।
+{0} has errors. Some files may be damaged or incomplete.	{0} में गलतियाँ हैं। कुछ फ़ाइलें खराब या अधूरी हो सकती हैं।
+Archive info	आर्काइव की जानकारी
+Folders can't be previewed.	फ़ोल्डरों की झलक नहीं दिखाई जा सकती।
+There's no preview for this type of file. Double-click to open it.	इस तरह की फ़ाइल की झलक नहीं है। खोलने के लिए डबल-क्लिक करें।
+This file is too large to preview. Double-click to open it.	यह फ़ाइल झलक के लिए बहुत बड़ी है। खोलने के लिए डबल-क्लिक करें।
+This archive is password-protected. Double-click the file to enter the password.	इस आर्काइव पर पासवर्ड है। पासवर्ड डालने के लिए फ़ाइल पर डबल-क्लिक करें।
+Loading…	लोड हो रहा है…
+A preview couldn't be loaded.	झलक लोड नहीं हो सकी।
+This image couldn't be shown.	यह तस्वीर दिखाई नहीं जा सकी।
+… (preview shortened)	… (झलक छोटी की गई)
+Add {0} to {1}?	{0} को {1} में जोड़ें?
+That's a lot of data to drag. Use "Extract to…" instead so you can see the progress.	खींचने के लिए यह बहुत ज़्यादा डेटा है। प्रगति देखने के लिए "यहाँ निकालें…" इस्तेमाल करें।
+This archive is password-protected. Use "Extract to…" and enter the password.	इस आर्काइव पर पासवर्ड है। "यहाँ निकालें…" इस्तेमाल करें और पासवर्ड डालें।
+KUDUPACK {0} is available. You have {1}.	KUDUPACK {0} उपलब्ध है। आपके पास {1} है।
+Extracting {0} archives	{0} आर्काइव निकाले जा रहे हैं
+Starting…	शुरू हो रहा है…
+Extracting {0} ({1} of {2})	{0} निकाला जा रहा है ({2} में से {1})
+{0} extracted, {1} couldn't be extracted:\n\n{2}	{0} निकाले गए, {1} नहीं निकाले जा सके:\n\n{2}
+A file with this name is already there	इस नाम की एक फ़ाइल वहाँ पहले से है
+{0} files with these names are already there	इन नामों की {0} फ़ाइलें वहाँ पहले से हैं
+It's in "{0}". What should KUDUPACK do?	वह "{0}" में है। KUDUPACK क्या करे?
+They're in "{0}". What should KUDUPACK do?	वे "{0}" में हैं। KUDUPACK क्या करे?
+Skip them	उन्हें छोड़ दें
+Replace them	उन्हें बदल दें
+Skip it	उसे छोड़ दें
+Replace it	उसे बदल दें
+Stopping…	रोका जा रहा है…
+About KUDUPACK	KUDUPACK के बारे में
+A lightweight archive tool for Windows. Opens ZIP, 7Z, RAR, TAR, GZ, XZ and more. Runs without administrator rights.	Windows के लिए एक हल्का आर्काइव टूल। ZIP, 7Z, RAR, TAR, GZ, XZ और बहुत कुछ खोलता है। एडमिनिस्ट्रेटर अधिकारों के बिना चलता है।
+GitHub repository	GitHub रिपॉज़िटरी
+Open-source licenses	ओपन-सोर्स लाइसेंस
+OK	ठीक है
+Check for updates	अपडेट जाँचें
+Create archive - KUDUPACK	आर्काइव बनाएँ - KUDUPACK
+Create archive	आर्काइव बनाएँ
+Archive name	आर्काइव का नाम
+Save to	यहाँ सहेजें
+Save to folder	फ़ोल्डर में सहेजें
+Browse…	ब्राउज़ करें…
+Format	प्रकार
+ZIP	ZIP
+Opens everywhere	हर जगह खुलता है
+Smallest files	सबसे छोटी फ़ाइलें
+TAR	TAR
+No compression	बिना छोटा किए
+TAR.GZ	TAR.GZ
+Linux standard	Linux में आम
+TAR.BZ2	TAR.BZ2
+Smaller, slower	छोटा, धीमा
+TAR.XZ	TAR.XZ
+Smallest for Linux	Linux के लिए सबसे छोटा
+RAR archives can be opened and extracted, but not created.	RAR आर्काइव खोले और निकाले जा सकते हैं, पर बनाए नहीं जा सकते।
+Compression level	कितना छोटा करें
+Password (optional)	पासवर्ड (वैकल्पिक)
+Password	पासवर्ड
+Repeat password	पासवर्ड दोबारा
+Type the password twice. Leave both empty for no password.	पासवर्ड दो बार लिखें। बिना पासवर्ड के लिए दोनों खाली छोड़ें।
+Also hide file names (7Z only)	फ़ाइलों के नाम भी छिपाएँ (सिर्फ़ 7Z)
+TAR formats don't support passwords.	TAR प्रकारों में पासवर्ड नहीं होते।
+Split into parts	हिस्सों में बाँटें
+Don't split	न बाँटें
+100 MB	100 MB
+700 MB	700 MB
+4 GB (USB drives)	4 GB (USB ड्राइव)
++ Files	+ फ़ाइलें
++ Folder	+ फ़ोल्डर
+Files to add	जोड़ने वाली फ़ाइलें
+Remove	हटाएँ
+Remove from list	सूची से हटाएँ
+Drop files or folders here, or use + Files / + Folder.	फ़ाइलें या फ़ोल्डर यहाँ छोड़ें, या + फ़ाइलें / + फ़ोल्डर इस्तेमाल करें।
+Cancel	रद्द करें
+Create	बनाएँ
+Dismiss	छिपाएँ
+Dismiss update notice	अपडेट की सूचना छिपाएँ
+Download	डाउनलोड
+Drop files or an archive here	फ़ाइलें या एक आर्काइव यहाँ छोड़ें
+Drop an archive to open it. Drop files or folders to pack them into a new archive.	खोलने के लिए आर्काइव छोड़ें। नए आर्काइव में पैक करने के लिए फ़ाइलें या फ़ोल्डर छोड़ें।
+Open archive…	आर्काइव खोलें…
+Create archive…	आर्काइव बनाएँ…
+Extract many…	कई निकालें…
+Supported formats	समर्थित प्रकार
+OPEN & EXTRACT	खोलें और निकालें
+CREATE	बनाएँ
+Clear	साफ़ करें
+Recent archives	हाल के आर्काइव
+Archives you open will show up here.	आप जो आर्काइव खोलेंगे वे यहाँ दिखेंगे।
+About	बारे में
+Settings	सेटिंग्स
+New archive	नया आर्काइव
+Back to start	शुरुआत पर वापस
+Extract everything into a new folder next to the archive	सब कुछ आर्काइव के पास एक नए फ़ोल्डर में निकालें
+Extract all	सब निकालें
+Extract the selected items (or everything) to a folder you choose	चुनी हुई चीज़ें (या सब कुछ) अपने चुने फ़ोल्डर में निकालें
+Extract to…	यहाँ निकालें…
+Add files	फ़ाइलें जोड़ें
+Delete	हटाएँ
+Check the archive for errors	आर्काइव में गलतियाँ जाँचें
+Test	जाँचें
+Info	जानकारी
+Show a preview of the selected file	चुनी हुई फ़ाइल की झलक दिखाएँ
+Preview	झलक
+Up one folder	एक फ़ोल्डर ऊपर
+Search in archive	आर्काइव में खोजें
+Folders	फ़ोल्डर
+Files in archive	आर्काइव की फ़ाइलें
+Type	प्रकार
+Opening…	खोला जा रहा है…
+Files already exist - KUDUPACK	फ़ाइलें पहले से मौजूद हैं - KUDUPACK
+Leave the files that are already there and don't extract these	जो फ़ाइलें पहले से हैं उन्हें रहने दें और इन्हें न निकालें
+Replace	बदल दें
+Overwrite the files that are already there	जो फ़ाइलें पहले से हैं उनके ऊपर लिख दें
+Keep both	दोनों रखें
+Extract these with a number added to their names, like report (2).pdf	इन्हें नाम में एक नंबर जोड़कर निकालें, जैसे report (2).pdf
+Password - KUDUPACK	पासवर्ड - KUDUPACK
+Enter password	पासवर्ड डालें
+Show password	पासवर्ड दिखाएँ
+Settings - KUDUPACK	सेटिंग्स - KUDUPACK
+Appearance	रूप
+Same as Windows	Windows जैसा
+Light	हल्का
+Dark	गहरा
+Language	भाषा
+The language changes the next time you start KUDUPACK.	भाषा अगली बार KUDUPACK शुरू करने पर बदलेगी।
+After extracting	निकालने के बाद
+Open the folder with the extracted files	निकाली गई फ़ाइलों वाला फ़ोल्डर खोलें
+Move the archive to the Recycle Bin	आर्काइव को रीसायकल बिन में भेजें
+Only after everything was extracted. Split archives are never removed.	सिर्फ़ तब जब सब कुछ निकल गया हो। बँटे हुए आर्काइव कभी नहीं हटाए जाते।
+File Explorer	File Explorer
+Show KUDUPACK in the right-click menu	राइट-क्लिक मेनू में KUDUPACK दिखाएँ
+Adds Extract here, Extract to folder and Add to archive. On Windows 11 they're under "Show more options".	Extract here, Extract to folder और Add to archive जोड़ता है। Windows 11 में वे "Show more options" में होते हैं।
+Open archives with KUDUPACK when double-clicked	डबल-क्लिक करने पर आर्काइव KUDUPACK में खोलें
+Windows may ask you to confirm. You can also choose it in	Windows पुष्टि माँग सकता है। आप इसे यहाँ भी चुन सकते हैं:
+Default apps	Default apps
+Updates	अपडेट
+Tell me when a new version is on GitHub	GitHub पर नया संस्करण आने पर मुझे बताएँ
+All settings are saved for your Windows account only, so KUDUPACK never needs administrator rights. If you want to extract into a protected folder such as Program Files, close KUDUPACK and start it with "Run as administrator".	सारी सेटिंग्स सिर्फ़ आपके Windows खाते के लिए सहेजी जाती हैं, इसलिए KUDUPACK को कभी एडमिनिस्ट्रेटर अधिकार नहीं चाहिए। अगर आप Program Files जैसे सुरक्षित फ़ोल्डर में निकालना चाहते हैं, तो KUDUPACK बंद करके "Run as administrator" से चलाएँ।
+Done	हो गया

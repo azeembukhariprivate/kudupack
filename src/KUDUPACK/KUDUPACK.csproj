@@ -14,7 +14,7 @@
     <Prefer32Bit>false</Prefer32Bit>
     <SatelliteResourceLanguages>en</SatelliteResourceLanguages>
 
-    <Version>1.0.3</Version>
+    <Version>1.1.0</Version>
     <Product>KUDUPACK</Product>
     <Company>Azeem</Company>
     <Authors>Azeem</Authors>
@@ -53,5 +53,9 @@
   <Target Name="Check7zLibs" BeforeTargets="Build">
     <Error Condition="!Exists('$(Pkg7z_Libs)\bin\x64\7z.dll')" Text="7z.dll was not found in the 7z.Libs package (looked in '$(Pkg7z_Libs)\bin\x64')." />
   </Target>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Lang\*.txt" LogicalName="Kudupack.Lang.%(Filename).txt" />
+  </ItemGroup>
 
 </Project>

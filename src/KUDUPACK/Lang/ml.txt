@@ -1,0 +1,253 @@
+KUDUPACK ran into a problem it couldn't get past, and has to close.\n\n{0}	KUDUPACK-ന് മറികടക്കാനാകാത്ത ഒരു പ്രശ്നം നേരിട്ടു, അതിനാൽ അടയ്ക്കേണ്ടി വരുന്നു.\n\n{0}
+Something went wrong:\n\n{0}	എന്തോ കുഴപ്പം സംഭവിച്ചു:\n\n{0}
+Azeem	Azeem
+Collecting files…	ഫയലുകൾ ശേഖരിക്കുന്നു…
+There are no files to add.	ചേർക്കാൻ ഫയലുകളൊന്നുമില്ല.
+Compressing…	ചുരുക്കുന്നു…
+Packing…	പാക്ക് ചെയ്യുന്നു…
+Archives	ആർക്കൈവുകൾ
+All files	എല്ലാ ഫയലുകളും
+The archive engine (7z.dll) is missing. Please reinstall KUDUPACK.	ആർക്കൈവ് എഞ്ചിൻ (7z.dll) കാണാനില്ല. KUDUPACK വീണ്ടും ഇൻസ്റ്റാൾ ചെയ്യുക.
+Folder	ഫോൾഡർ
+File	ഫയൽ
+{0} file	{0} ഫയൽ
+…and {0} more	…കൂടാതെ {0} എണ്ണം കൂടി
+1 item wasn't extracted because its name would put it outside the folder you chose, or uses a name Windows reserves. Archives made to harm a PC use names like these, so be careful with the rest of this archive.	1 ഇനം എക്സ്ട്രാക്റ്റ് ചെയ്തില്ല, കാരണം അതിന്റെ പേര് അതിനെ നിങ്ങൾ തിരഞ്ഞെടുത്ത ഫോൾഡറിന് പുറത്താക്കും, അല്ലെങ്കിൽ Windows മാറ്റിവെച്ച ഒരു പേരാണ്. പിസിയെ ഉപദ്രവിക്കാൻ ഉണ്ടാക്കിയ ആർക്കൈവുകൾ ഇത്തരം പേരുകൾ ഉപയോഗിക്കുന്നു, അതിനാൽ ഈ ആർക്കൈവിലെ ബാക്കിയുള്ളവയിൽ ശ്രദ്ധിക്കുക.
+{0} items weren't extracted because their names would put them outside the folder you chose, or use names Windows reserves. Archives made to harm a PC use names like these, so be careful with the rest of this archive.	{0} ഇനങ്ങൾ എക്സ്ട്രാക്റ്റ് ചെയ്തില്ല, കാരണം അവയുടെ പേരുകൾ അവയെ നിങ്ങൾ തിരഞ്ഞെടുത്ത ഫോൾഡറിന് പുറത്താക്കും, അല്ലെങ്കിൽ Windows മാറ്റിവെച്ച പേരുകളാണ്. പിസിയെ ഉപദ്രവിക്കാൻ ഉണ്ടാക്കിയ ആർക്കൈവുകൾ ഇത്തരം പേരുകൾ ഉപയോഗിക്കുന്നു, അതിനാൽ ഈ ആർക്കൈവിലെ ബാക്കിയുള്ളവയിൽ ശ്രദ്ധിക്കുക.
+Reading {0}…	{0} വായിക്കുന്നു…
+Unpacking the TAR inside {0}…	{0}-നുള്ളിലെ TAR തുറക്കുന്നു…
+{0}.tar	{0}.tar
+{0} may be password-protected.	{0}-ന് പാസ്‌വേഡ് ഉണ്ടാകാം.
+That password didn't work for {0}. Try again.	ആ പാസ്‌വേഡ് {0}-ന് ശരിയായില്ല. വീണ്ടും ശ്രമിക്കുക.
+Files can only be added to ZIP and 7Z archives.	ZIP, 7Z ആർക്കൈവുകളിൽ മാത്രമേ ഫയലുകൾ ചേർക്കാനാകൂ.
+Files can only be deleted from ZIP and 7Z archives.	ZIP, 7Z ആർക്കൈവുകളിൽ നിന്ന് മാത്രമേ ഫയലുകൾ ഇല്ലാതാക്കാനാകൂ.
+ ({0}% smaller)	 ({0}% ചെറുത്)
+File: {0}	ഫയൽ: {0}
+Format: {0}	രീതി: {0}
+Contents: {0} files, {1} folders	ഉള്ളടക്കം: {0} ഫയലുകൾ, {1} ഫോൾഡറുകൾ
+Original size: {0}	യഥാർത്ഥ വലിപ്പം: {0}
+Archive size: {0}	ആർക്കൈവ് വലിപ്പം: {0}
+Password protected: {0}	പാസ്‌വേഡ് സംരക്ഷിതം: {0}
+Yes	അതെ
+No	ഇല്ല
+Parts: {0}	ഭാഗങ്ങൾ: {0}
+{0} is password-protected.	{0}-ന് പാസ്‌വേഡുണ്ട്.
+user	user
+Windows didn't allow KUDUPACK to write to this folder:\n{0}\n\nPick a folder in your user profile (like Desktop or Documents), or close KUDUPACK and start it with "Run as administrator".	ഈ ഫോൾഡറിൽ എഴുതാൻ Windows KUDUPACK-നെ അനുവദിച്ചില്ല:\n{0}\n\nനിങ്ങളുടെ ഉപയോക്തൃ പ്രൊഫൈലിലെ ഒരു ഫോൾഡർ (Desktop അല്ലെങ്കിൽ Documents പോലെ) തിരഞ്ഞെടുക്കുക, അല്ലെങ്കിൽ KUDUPACK അടച്ച് "Run as administrator" ഉപയോഗിച്ച് തുടങ്ങുക.
+archive	archive
+^(CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9]|CONIN\\$|CONOUT\\$) *(\\..*)?$	^(CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9]|CONIN\\$|CONOUT\\$) *(\\..*)?$
+{0}.tmp	{0}.tmp
+Theme	Theme
+System	System
+Zip	Zip
+Recent	Recent
+KUDUPACK: Extract here	KUDUPACK: Extract here
+KUDUPACK: Extract to folder	KUDUPACK: Extract to folder
+KUDUPACK: Add to archive…	KUDUPACK: Add to archive…
+KUDUPACK archive	KUDUPACK archive
+Version {0}	പതിപ്പ് {0}
+Checking…	പരിശോധിക്കുന്നു…
+No releases have been published yet.	ഇതുവരെ റിലീസുകളൊന്നും പ്രസിദ്ധീകരിച്ചിട്ടില്ല.
+Version {0} is available.	പതിപ്പ് {0} ലഭ്യമാണ്.
+Download update	അപ്ഡേറ്റ് ഡൗൺലോഡ് ചെയ്യുക
+You have the latest version.	നിങ്ങളുടെ കൈയിൽ ഏറ്റവും പുതിയ പതിപ്പാണ്.
+Couldn't reach GitHub. Check your internet connection.	GitHub-ൽ എത്താനായില്ല. ഇന്റർനെറ്റ് കണക്ഷൻ പരിശോധിക്കുക.
+Store	ചുരുക്കാതെ
+Fast	വേഗം
+Normal	സാധാരണ
+Maximum	പരമാവധി
+Ultra	അതിപരമാവധി
+{0} file(s), {1} folder(s)	{0} ഫയൽ(കൾ), {1} ഫോൾഡർ(കൾ)
+{0} in files	ഫയലുകളിൽ {0}
+Choose files to add	ചേർക്കാനുള്ള ഫയലുകൾ തിരഞ്ഞെടുക്കുക
+Choose a folder to add	ചേർക്കാനുള്ള ഫോൾഡർ തിരഞ്ഞെടുക്കുക
+Save the archive in:	ആർക്കൈവ് ഇവിടെ സേവ് ചെയ്യുക:
+Add at least one file or folder first.	ആദ്യം കുറഞ്ഞത് ഒരു ഫയലോ ഫോൾഡറോ ചേർക്കുക.
+Please enter a valid archive name. It can't contain \\ / : * ? " < > |	ശരിയായ ഒരു ആർക്കൈവ് പേര് നൽകുക. അതിൽ \\ / : * ? " < > | പാടില്ല
+Please choose a folder to save the archive in.	ആർക്കൈവ് സേവ് ചെയ്യാൻ ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക.
+The two passwords don't match.	രണ്ട് പാസ്‌വേഡുകളും യോജിക്കുന്നില്ല.
+The archive can't have the same name as one of the files being added.	ചേർക്കുന്ന ഫയലുകളിലൊന്നിന്റെ അതേ പേര് ആർക്കൈവിന് പാടില്ല.
+{0} already exists. Replace it?	{0} ഇതിനകം ഉണ്ട്. മാറ്റിവെക്കണോ?
+Creating {0}	{0} ഉണ്ടാക്കുന്നു
+Windows blocked this action for a normal user.\n\nChoose a folder in your user profile, or close KUDUPACK and start it with "Run as administrator".	സാധാരണ ഉപയോക്താവിന് ഈ പ്രവർത്തനം Windows തടഞ്ഞു.\n\nനിങ്ങളുടെ ഉപയോക്തൃ പ്രൊഫൈലിലെ ഒരു ഫോൾഡർ തിരഞ്ഞെടുക്കുക, അല്ലെങ്കിൽ KUDUPACK അടച്ച് "Run as administrator" ഉപയോഗിച്ച് തുടങ്ങുക.
+This file couldn't be opened. It may be damaged, incomplete, or not an archive KUDUPACK supports.	ഈ ഫയൽ തുറക്കാനായില്ല. അത് കേടായതോ പൂർണ്ണമല്ലാത്തതോ KUDUPACK പിന്തുണയ്ക്കാത്ത ആർക്കൈവോ ആകാം.
+The archive engine reported a problem:\n\n{0}	ആർക്കൈവ് എഞ്ചിൻ ഒരു പ്രശ്നം റിപ്പോർട്ട് ചെയ്തു:\n\n{0}
+Choose archives to extract	എക്സ്ട്രാക്റ്റ് ചെയ്യാനുള്ള ആർക്കൈവുകൾ തിരഞ്ഞെടുക്കുക
+Open an archive	ഒരു ആർക്കൈവ് തുറക്കുക
+TAR.{0}	TAR.{0}
+Right-click menu in File Explorer: {0}	File Explorer-ലെ റൈറ്റ്-ക്ലിക്ക് മെനു: {0}
+On	ഓൺ
+Off	ഓഫ്
+{0}   ·   Version {1}	{0}   ·   പതിപ്പ് {1}
+This file no longer exists:\n{0}	ഈ ഫയൽ ഇപ്പോൾ നിലവിലില്ല:\n{0}
+Opening {0}…	{0} തുറക്കുന്നു…
+{0} - KUDUPACK	{0} - KUDUPACK
+Adding and deleting works for ZIP and 7Z archives that aren't split into parts.	ഭാഗങ്ങളായി വിഭജിക്കാത്ത ZIP, 7Z ആർക്കൈവുകളിൽ മാത്രമേ ചേർക്കലും ഇല്ലാതാക്കലും പ്രവർത്തിക്കൂ.
+Add files to this archive	ഈ ആർക്കൈവിൽ ഫയലുകൾ ചേർക്കുക
+Delete the selected items from this archive	തിരഞ്ഞെടുത്തവ ഈ ആർക്കൈവിൽ നിന്ന് ഇല്ലാതാക്കുക
+Password protected	പാസ്‌വേഡ് സംരക്ഷിതം
+Select a file to preview it.	മുൻകാഴ്ച കാണാൻ ഒരു ഫയൽ തിരഞ്ഞെടുക്കുക.
+KUDUPACK	KUDUPACK
+No files match your search.	നിങ്ങളുടെ തിരയലിന് യോജിക്കുന്ന ഫയലുകളില്ല.
+This folder is empty.	ഈ ഫോൾഡർ ശൂന്യമാണ്.
+{0} files, {1} folders  ·  {2} → {3}{4}	{0} ഫയലുകൾ, {1} ഫോൾഡറുകൾ  ·  {2} → {3}{4}
+{0} selected ({1})	{0} തിരഞ്ഞെടുത്തു ({1})
+Search results for "{0}"	"{0}" എന്നതിനുള്ള തിരയൽ ഫലങ്ങൾ
+Size	വലിപ്പം
+Modified	മാറ്റിയത്
+Name	പേര്
+Opening {0}	{0} തുറക്കുന്നു
+Extracting to a temporary folder…	താൽക്കാലിക ഫോൾഡറിലേക്ക് എക്സ്ട്രാക്റ്റ് ചെയ്യുന്നു…
+Windows doesn't have an app set up to open this type of file.	ഈ തരം ഫയൽ തുറക്കാൻ Windows-ൽ ഒരു ആപ്പും സജ്ജമാക്കിയിട്ടില്ല.
+Extract the {0} selected item(s) to:	തിരഞ്ഞെടുത്ത {0} ഇനം(ങ്ങൾ) ഇവിടേക്ക് എക്സ്ട്രാക്റ്റ് ചെയ്യുക:
+Extract everything to:	എല്ലാം ഇവിടേക്ക് എക്സ്ട്രാക്റ്റ് ചെയ്യുക:
+Extracting {0}	{0} എക്സ്ട്രാക്റ്റ് ചെയ്യുന്നു
+Extracting to {0}	{0}-ലേക്ക് എക്സ്ട്രാക്റ്റ് ചെയ്യുന്നു
+{0} was extracted and moved to the Recycle Bin.	{0} എക്സ്ട്രാക്റ്റ് ചെയ്ത് റീസൈക്കിൾ ബിന്നിലേക്ക് നീക്കി.
+Add files to {0}	{0}-ൽ ഫയലുകൾ ചേർക്കുക
+Adding to {0}	{0}-ൽ ചേർക്കുന്നു
+Adding files…	ഫയലുകൾ ചേർക്കുന്നു…
+{0} items	{0} ഇനങ്ങൾ
+Delete {0} from {1}?\n\nThis can't be undone.	{1}-ൽ നിന്ന് {0} ഇല്ലാതാക്കണോ?\n\nഇത് പഴയപടിയാക്കാനാകില്ല.
+Deleting from {0}	{0}-ൽ നിന്ന് ഇല്ലാതാക്കുന്നു
+Updating the archive…	ആർക്കൈവ് പുതുക്കുന്നു…
+Testing {0}	{0} പരിശോധിക്കുന്നു
+Checking every file…	ഓരോ ഫയലും പരിശോധിക്കുന്നു…
+No errors found in {0}.	{0}-ൽ പിശകുകളൊന്നും കണ്ടില്ല.
+{0} has errors. Some files may be damaged or incomplete.	{0}-ൽ പിശകുകളുണ്ട്. ചില ഫയലുകൾ കേടായതോ പൂർണ്ണമല്ലാത്തതോ ആകാം.
+Archive info	ആർക്കൈവ് വിവരം
+Folders can't be previewed.	ഫോൾഡറുകളുടെ മുൻകാഴ്ച കാണിക്കാനാകില്ല.
+There's no preview for this type of file. Double-click to open it.	ഈ തരം ഫയലിന് മുൻകാഴ്ചയില്ല. തുറക്കാൻ ഇരട്ട-ക്ലിക്ക് ചെയ്യുക.
+This file is too large to preview. Double-click to open it.	മുൻകാഴ്ചയ്ക്ക് ഈ ഫയൽ വളരെ വലുതാണ്. തുറക്കാൻ ഇരട്ട-ക്ലിക്ക് ചെയ്യുക.
+This archive is password-protected. Double-click the file to enter the password.	ഈ ആർക്കൈവിന് പാസ്‌വേഡുണ്ട്. പാസ്‌വേഡ് നൽകാൻ ഫയലിൽ ഇരട്ട-ക്ലിക്ക് ചെയ്യുക.
+Loading…	ലോഡ് ചെയ്യുന്നു…
+A preview couldn't be loaded.	മുൻകാഴ്ച ലോഡ് ചെയ്യാനായില്ല.
+This image couldn't be shown.	ഈ ചിത്രം കാണിക്കാനായില്ല.
+… (preview shortened)	… (മുൻകാഴ്ച ചുരുക്കി)
+Add {0} to {1}?	{0} {1}-ൽ ചേർക്കണോ?
+That's a lot of data to drag. Use "Extract to…" instead so you can see the progress.	വലിച്ചിടാൻ ഇത് ധാരാളം ഡാറ്റയാണ്. പുരോഗതി കാണാൻ പകരം "ഇവിടേക്ക് എക്സ്ട്രാക്റ്റ്…" ഉപയോഗിക്കുക.
+This archive is password-protected. Use "Extract to…" and enter the password.	ഈ ആർക്കൈവിന് പാസ്‌വേഡുണ്ട്. "ഇവിടേക്ക് എക്സ്ട്രാക്റ്റ്…" ഉപയോഗിച്ച് പാസ്‌വേഡ് നൽകുക.
+KUDUPACK {0} is available. You have {1}.	KUDUPACK {0} ലഭ്യമാണ്. നിങ്ങളുടെ കൈയിൽ {1} ആണ്.
+Extracting {0} archives	{0} ആർക്കൈവുകൾ എക്സ്ട്രാക്റ്റ് ചെയ്യുന്നു
+Starting…	തുടങ്ങുന്നു…
+Extracting {0} ({1} of {2})	{0} എക്സ്ട്രാക്റ്റ് ചെയ്യുന്നു ({2}-ൽ {1})
+{0} extracted, {1} couldn't be extracted:\n\n{2}	{0} എക്സ്ട്രാക്റ്റ് ചെയ്തു, {1} എക്സ്ട്രാക്റ്റ് ചെയ്യാനായില്ല:\n\n{2}
+A file with this name is already there	ഈ പേരുള്ള ഒരു ഫയൽ ഇതിനകം അവിടെയുണ്ട്
+{0} files with these names are already there	ഈ പേരുകളുള്ള {0} ഫയലുകൾ ഇതിനകം അവിടെയുണ്ട്
+It's in "{0}". What should KUDUPACK do?	അത് "{0}"-ൽ ആണ്. KUDUPACK എന്ത് ചെയ്യണം?
+They're in "{0}". What should KUDUPACK do?	അവ "{0}"-ൽ ആണ്. KUDUPACK എന്ത് ചെയ്യണം?
+Skip them	അവ ഒഴിവാക്കുക
+Replace them	അവ മാറ്റിവെക്കുക
+Skip it	അത് ഒഴിവാക്കുക
+Replace it	അത് മാറ്റിവെക്കുക
+Stopping…	നിർത്തുന്നു…
+About KUDUPACK	KUDUPACK-നെക്കുറിച്ച്
+A lightweight archive tool for Windows. Opens ZIP, 7Z, RAR, TAR, GZ, XZ and more. Runs without administrator rights.	Windows-നുള്ള ഒരു ലഘു ആർക്കൈവ് ടൂൾ. ZIP, 7Z, RAR, TAR, GZ, XZ എന്നിവയും മറ്റും തുറക്കുന്നു. അഡ്മിനിസ്ട്രേറ്റർ അനുമതിയില്ലാതെ പ്രവർത്തിക്കുന്നു.
+GitHub repository	GitHub റിപ്പോസിറ്ററി
+Open-source licenses	ഓപ്പൺ സോഴ്സ് ലൈസൻസുകൾ
+OK	ശരി
+Check for updates	അപ്ഡേറ്റുകൾ പരിശോധിക്കുക
+Create archive - KUDUPACK	ആർക്കൈവ് ഉണ്ടാക്കുക - KUDUPACK
+Create archive	ആർക്കൈവ് ഉണ്ടാക്കുക
+Archive name	ആർക്കൈവിന്റെ പേര്
+Save to	ഇവിടെ സേവ് ചെയ്യുക
+Save to folder	ഫോൾഡറിൽ സേവ് ചെയ്യുക
+Browse…	തിരയുക…
+Format	രീതി
+ZIP	ZIP
+Opens everywhere	എവിടെയും തുറക്കും
+Smallest files	ഏറ്റവും ചെറിയ ഫയലുകൾ
+TAR	TAR
+No compression	ചുരുക്കൽ ഇല്ല
+TAR.GZ	TAR.GZ
+Linux standard	Linux-ലെ സാധാരണം
+TAR.BZ2	TAR.BZ2
+Smaller, slower	ചെറുത്, പതുക്കെ
+TAR.XZ	TAR.XZ
+Smallest for Linux	Linux-ന് ഏറ്റവും ചെറുത്
+RAR archives can be opened and extracted, but not created.	RAR ആർക്കൈവുകൾ തുറക്കാനും എക്സ്ട്രാക്റ്റ് ചെയ്യാനും കഴിയും, പക്ഷേ ഉണ്ടാക്കാനാകില്ല.
+Compression level	ചുരുക്കൽ നില
+Password (optional)	പാസ്‌വേഡ് (ഐച്ഛികം)
+Password	പാസ്‌വേഡ്
+Repeat password	പാസ്‌വേഡ് ആവർത്തിക്കുക
+Type the password twice. Leave both empty for no password.	പാസ്‌വേഡ് രണ്ടുതവണ ടൈപ്പ് ചെയ്യുക. പാസ്‌വേഡ് വേണ്ടെങ്കിൽ രണ്ടും ശൂന്യമാക്കുക.
+Also hide file names (7Z only)	ഫയൽ പേരുകളും മറയ്ക്കുക (7Z മാത്രം)
+TAR formats don't support passwords.	TAR രീതികൾ പാസ്‌വേഡുകൾ പിന്തുണയ്ക്കുന്നില്ല.
+Split into parts	ഭാഗങ്ങളായി വിഭജിക്കുക
+Don't split	വിഭജിക്കരുത്
+100 MB	100 MB
+700 MB	700 MB
+4 GB (USB drives)	4 GB (USB ഡ്രൈവുകൾ)
++ Files	+ ഫയലുകൾ
++ Folder	+ ഫോൾഡർ
+Files to add	ചേർക്കാനുള്ള ഫയലുകൾ
+Remove	നീക്കം ചെയ്യുക
+Remove from list	പട്ടികയിൽ നിന്ന് നീക്കുക
+Drop files or folders here, or use + Files / + Folder.	ഫയലുകളോ ഫോൾഡറുകളോ ഇവിടെ ഇടുക, അല്ലെങ്കിൽ + ഫയലുകൾ / + ഫോൾഡർ ഉപയോഗിക്കുക.
+Cancel	റദ്ദാക്കുക
+Create	ഉണ്ടാക്കുക
+Dismiss	ഒഴിവാക്കുക
+Dismiss update notice	അപ്ഡേറ്റ് അറിയിപ്പ് ഒഴിവാക്കുക
+Download	ഡൗൺലോഡ് ചെയ്യുക
+Drop files or an archive here	ഫയലുകളോ ഒരു ആർക്കൈവോ ഇവിടെ ഇടുക
+Drop an archive to open it. Drop files or folders to pack them into a new archive.	തുറക്കാൻ ഒരു ആർക്കൈവ് ഇടുക. പുതിയ ആർക്കൈവിലാക്കാൻ ഫയലുകളോ ഫോൾഡറുകളോ ഇടുക.
+Open archive…	ആർക്കൈവ് തുറക്കുക…
+Create archive…	ആർക്കൈവ് ഉണ്ടാക്കുക…
+Extract many…	പലതും എക്സ്ട്രാക്റ്റ് ചെയ്യുക…
+Supported formats	പിന്തുണയ്ക്കുന്ന രീതികൾ
+OPEN & EXTRACT	തുറക്കുക, എക്സ്ട്രാക്റ്റ് ചെയ്യുക
+CREATE	ഉണ്ടാക്കുക
+Clear	മായ്ക്കുക
+Recent archives	അടുത്തിടെയുള്ള ആർക്കൈവുകൾ
+Archives you open will show up here.	നിങ്ങൾ തുറക്കുന്ന ആർക്കൈവുകൾ ഇവിടെ കാണാം.
+About	കുറിച്ച്
+Settings	ക്രമീകരണങ്ങൾ
+New archive	പുതിയ ആർക്കൈവ്
+Back to start	തുടക്കത്തിലേക്ക്
+Extract everything into a new folder next to the archive	എല്ലാം ആർക്കൈവിനരികിൽ ഒരു പുതിയ ഫോൾഡറിലേക്ക് എക്സ്ട്രാക്റ്റ് ചെയ്യുക
+Extract all	എല്ലാം എക്സ്ട്രാക്റ്റ് ചെയ്യുക
+Extract the selected items (or everything) to a folder you choose	തിരഞ്ഞെടുത്തവ (അല്ലെങ്കിൽ എല്ലാം) നിങ്ങൾ തിരഞ്ഞെടുക്കുന്ന ഫോൾഡറിലേക്ക് എക്സ്ട്രാക്റ്റ് ചെയ്യുക
+Extract to…	ഇവിടേക്ക് എക്സ്ട്രാക്റ്റ്…
+Add files	ഫയലുകൾ ചേർക്കുക
+Delete	ഇല്ലാതാക്കുക
+Check the archive for errors	ആർക്കൈവിൽ പിശകുകളുണ്ടോ എന്ന് പരിശോധിക്കുക
+Test	പരിശോധിക്കുക
+Info	വിവരം
+Show a preview of the selected file	തിരഞ്ഞെടുത്ത ഫയലിന്റെ മുൻകാഴ്ച കാണിക്കുക
+Preview	മുൻകാഴ്ച
+Up one folder	ഒരു ഫോൾഡർ മുകളിലേക്ക്
+Search in archive	ആർക്കൈവിൽ തിരയുക
+Folders	ഫോൾഡറുകൾ
+Files in archive	ആർക്കൈവിലെ ഫയലുകൾ
+Type	തരം
+Opening…	തുറക്കുന്നു…
+Files already exist - KUDUPACK	ഫയലുകൾ ഇതിനകം ഉണ്ട് - KUDUPACK
+Leave the files that are already there and don't extract these	ഇതിനകം അവിടെയുള്ള ഫയലുകൾ വിട്ട് ഇവ എക്സ്ട്രാക്റ്റ് ചെയ്യരുത്
+Replace	മാറ്റിവെക്കുക
+Overwrite the files that are already there	ഇതിനകം അവിടെയുള്ള ഫയലുകൾക്ക് മുകളിൽ എഴുതുക
+Keep both	രണ്ടും സൂക്ഷിക്കുക
+Extract these with a number added to their names, like report (2).pdf	ഇവ പേരിൽ ഒരു നമ്പർ ചേർത്ത് എക്സ്ട്രാക്റ്റ് ചെയ്യുക, report (2).pdf പോലെ
+Password - KUDUPACK	പാസ്‌വേഡ് - KUDUPACK
+Enter password	പാസ്‌വേഡ് നൽകുക
+Show password	പാസ്‌വേഡ് കാണിക്കുക
+Settings - KUDUPACK	ക്രമീകരണങ്ങൾ - KUDUPACK
+Appearance	രൂപം
+Same as Windows	Windows-ന്റേത് പോലെ
+Light	ലൈറ്റ്
+Dark	ഡാർക്ക്
+Language	ഭാഷ
+The language changes the next time you start KUDUPACK.	അടുത്ത തവണ KUDUPACK തുടങ്ങുമ്പോൾ ഭാഷ മാറും.
+After extracting	എക്സ്ട്രാക്റ്റ് ചെയ്തശേഷം
+Open the folder with the extracted files	എക്സ്ട്രാക്റ്റ് ചെയ്ത ഫയലുകളുള്ള ഫോൾഡർ തുറക്കുക
+Move the archive to the Recycle Bin	ആർക്കൈവ് റീസൈക്കിൾ ബിന്നിലേക്ക് നീക്കുക
+Only after everything was extracted. Split archives are never removed.	എല്ലാം എക്സ്ട്രാക്റ്റ് ചെയ്തശേഷം മാത്രം. വിഭജിച്ച ആർക്കൈവുകൾ ഒരിക്കലും നീക്കില്ല.
+File Explorer	File Explorer
+Show KUDUPACK in the right-click menu	റൈറ്റ്-ക്ലിക്ക് മെനുവിൽ KUDUPACK കാണിക്കുക
+Adds Extract here, Extract to folder and Add to archive. On Windows 11 they're under "Show more options".	Extract here, Extract to folder, Add to archive എന്നിവ ചേർക്കുന്നു. Windows 11-ൽ അവ "Show more options"-ന് കീഴിലാണ്.
+Open archives with KUDUPACK when double-clicked	ഇരട്ട-ക്ലിക്ക് ചെയ്യുമ്പോൾ ആർക്കൈവുകൾ KUDUPACK-ൽ തുറക്കുക
+Windows may ask you to confirm. You can also choose it in	Windows ഉറപ്പ് ചോദിച്ചേക്കാം. ഇത് ഇവിടെയും തിരഞ്ഞെടുക്കാം:
+Default apps	Default apps
+Updates	അപ്ഡേറ്റുകൾ
+Tell me when a new version is on GitHub	GitHub-ൽ പുതിയ പതിപ്പ് വരുമ്പോൾ എന്നെ അറിയിക്കുക
+All settings are saved for your Windows account only, so KUDUPACK never needs administrator rights. If you want to extract into a protected folder such as Program Files, close KUDUPACK and start it with "Run as administrator".	എല്ലാ ക്രമീകരണങ്ങളും നിങ്ങളുടെ Windows അക്കൗണ്ടിന് മാത്രം സേവ് ചെയ്യുന്നു, അതിനാൽ KUDUPACK-ന് ഒരിക്കലും അഡ്മിനിസ്ട്രേറ്റർ അനുമതി വേണ്ട. Program Files പോലുള്ള സംരക്ഷിത ഫോൾഡറിലേക്ക് എക്സ്ട്രാക്റ്റ് ചെയ്യണമെങ്കിൽ KUDUPACK അടച്ച് "Run as administrator" ഉപയോഗിച്ച് തുടങ്ങുക.
+Done	കഴിഞ്ഞു

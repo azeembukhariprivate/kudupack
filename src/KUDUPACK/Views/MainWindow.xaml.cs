@@ -227,7 +227,7 @@ namespace Kudupack.Views
             SearchHint.Visibility = Visibility.Visible;
             _suppressSearch = false;
 
-            StatusRight.Text = _session.FormatName + (_session.HasEncrypted ? "  ·  Password protected" : string.Empty);
+            StatusRight.Text = _session.FormatName + (_session.HasEncrypted ? "  ·  " + Lang.T("Password protected") : string.Empty);
             Navigate(FindFolder(folderToShow) ?? _session.Root);
             FileList.Focus();
         }
@@ -317,16 +317,16 @@ namespace Kudupack.Views
         {
             if (_session == null) return;
             var saved = _session.UnpackedSize > 0 && _session.PackedSize > 0
-                ? $" ({Math.Max(0, 100 - (int)(_session.PackedSize * 100.0 / _session.UnpackedSize))}% smaller)"
+                ? Lang.T(" ({0}% smaller)", Math.Max(0, 100 - (int)(_session.PackedSize * 100.0 / _session.UnpackedSize)))
                 : string.Empty;
-            var text = $"{_session.AllFiles.Count} files, {_session.FolderCount} folders  ·  " +
-                       $"{Paths.FormatSize(_session.UnpackedSize)} → {Paths.FormatSize(_session.PackedSize)}{saved}";
+            var text = Lang.T("{0} files, {1} folders  ·  {2} → {3}{4}", _session.AllFiles.Count, _session.FolderCount,
+                              Paths.FormatSize(_session.UnpackedSize), Paths.FormatSize(_session.PackedSize), saved);
 
             var selected = SelectedNodes();
             if (selected.Count > 0)
             {
                 var size = selected.Sum(n => n.IsFolder ? n.AllFilesBelow().Sum(f => (double)f.Size) : n.Size);
-                text += $"  ·  {selected.Count} selected ({Paths.FormatSize((ulong)size)})";
+                text += "  ·  " + Lang.T("{0} selected ({1})", selected.Count, Paths.FormatSize((ulong)size));
             }
             StatusLeft.Text = text;
         }
@@ -370,12 +370,14 @@ namespace Kudupack.Views
         private void FileList_HeaderClick(object sender, RoutedEventArgs e)
         {
             if (!(e.OriginalSource is GridViewColumnHeader header) || header.Column == null) return;
+            // By the column's place, not its title: the titles are shown in the language in use.
+            var index = FileList.View is GridView grid ? grid.Columns.IndexOf(header.Column) : 0;
             string property;
-            switch (header.Column.Header as string)
+            switch (index)
             {
-                case "Size": property = "Size"; break;
-                case "Modified": property = "Modified"; break;
-                case "Type": property = "TypeText"; break;
+                case 1: property = "Size"; break;
+                case 2: property = "Modified"; break;
+                case 3: property = "TypeText"; break;
                 default: property = "Name"; break;
             }
 
@@ -511,7 +513,7 @@ namespace Kudupack.Views
             if (_session == null) return;
             var selected = SelectedNodes();
             var prompt = selected.Count > 0
-                ? $"Extract the {selected.Count} selected item(s) to:"
+                ? Lang.T("Extract the {0} selected item(s) to:", selected.Count)
                 : "Extract everything to:";
             var destination = Dialogs.PickFolder(this, prompt, Path.GetDirectoryName(_session.SourcePath));
             if (destination == null) return;

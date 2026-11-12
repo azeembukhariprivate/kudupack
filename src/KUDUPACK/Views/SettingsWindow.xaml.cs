@@ -12,6 +12,7 @@ namespace Kudupack.Views
         {
             InitializeComponent();
             ThemeManager.Attach(this);
+            LangUi.FillPicker(LanguageChips, LanguageNote);
 
             switch (Settings.Theme)
             {

@@ -21,6 +21,9 @@ namespace Kudupack.Views
 
         private static MessageBoxResult Show(Window owner, string message, string title, MessageBoxButton buttons, MessageBoxImage image)
         {
+            // Windows' own message box isn't a WPF window, so its texts are put into the language here.
+            message = Lang.T(message);
+            title = Lang.T(title);
             return owner != null && owner.IsVisible
                 ? MessageBox.Show(owner, message, title, buttons, image)
                 : MessageBox.Show(message, title, buttons, image);
@@ -48,7 +51,7 @@ namespace Kudupack.Views
         {
             using (var dialog = new Forms.FolderBrowserDialog
                    {
-                       Description = description,
+                       Description = Lang.T(description),
                        ShowNewFolderButton = true,
                        SelectedPath = startFolder ?? string.Empty
                    })
@@ -61,11 +64,19 @@ namespace Kudupack.Views
         {
             var dialog = new Microsoft.Win32.OpenFileDialog
             {
-                Title = multiple ? "Choose archives to extract" : "Open an archive",
-                Filter = ArchiveEngine.OpenFileFilter,
+                Title = Lang.T(multiple ? "Choose archives to extract" : "Open an archive"),
+                Filter = LangFilter(ArchiveEngine.OpenFileFilter),
                 Multiselect = multiple
             };
             return Show(dialog, owner) ? dialog.FileNames.ToList() : new List<string>();
+        }
+
+        /// <summary>A file-dialog filter ("Archives|*.zip;...|All files|*.*") with its names in the language in use.</summary>
+        public static string LangFilter(string filter)
+        {
+            var parts = filter.Split('|');
+            for (var i = 0; i < parts.Length; i += 2) parts[i] = Lang.T(parts[i]);
+            return string.Join("|", parts);
         }
 
         private static bool Show(Microsoft.Win32.CommonDialog dialog, Window owner) =>
@@ -75,8 +86,8 @@ namespace Kudupack.Views
         {
             var dialog = new Microsoft.Win32.OpenFileDialog
             {
-                Title = title,
-                Filter = "All files|*.*",
+                Title = Lang.T(title),
+                Filter = Lang.T("All files") + "|*.*",
                 Multiselect = true
             };
             return Show(dialog, owner) ? dialog.FileNames.ToList() : new List<string>();

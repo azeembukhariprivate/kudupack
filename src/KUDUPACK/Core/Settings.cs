@@ -49,6 +49,13 @@ namespace Kudupack.Core
         private static bool GetBool(string name, bool fallback) => Get(name, fallback ? "1" : "0") == "1";
         private static void SetBool(string name, bool value) => Set(name, value ? "1" : "0");
 
+        /// <summary>The language chosen in Settings: a code ("ml"), or empty for the same as Windows.</summary>
+        public static string Language
+        {
+            get => Get("AppLanguage", string.Empty);
+            set => Set("AppLanguage", value);
+        }
+
         public static ThemeMode Theme
         {
             get => Enum.TryParse(Get("Theme", "System"), out ThemeMode mode) ? mode : ThemeMode.System;

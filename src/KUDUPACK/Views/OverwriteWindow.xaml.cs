@@ -18,9 +18,9 @@ namespace Kudupack.Views
             var count = question.Names.Count;
             var folder = Path.GetFileName(question.Folder.TrimEnd('\\'));
             if (string.IsNullOrEmpty(folder)) folder = question.Folder;
-            HeadingText.Text = count == 1 ? "A file with this name is already there" : $"{count} files with these names are already there";
-            MessageText.Text = (count == 1 ? "It's" : "They're") + " in \"" + folder + "\". What should KUDUPACK do?";
-            NamesText.Text = string.Join("\n", question.Names.Take(6)) + (count > 6 ? $"\n…and {count - 6} more" : string.Empty);
+            HeadingText.Text = count == 1 ? Lang.T("A file with this name is already there") : Lang.T("{0} files with these names are already there", count);
+            MessageText.Text = Lang.T(count == 1 ? "It's in \"{0}\". What should KUDUPACK do?" : "They're in \"{0}\". What should KUDUPACK do?", folder);
+            NamesText.Text = string.Join("\n", question.Names.Take(6)) + (count > 6 ? "\n" + Lang.T("…and {0} more", count - 6) : string.Empty);
             if (count > 1)
             {
                 SkipButton.Content = "Skip them";

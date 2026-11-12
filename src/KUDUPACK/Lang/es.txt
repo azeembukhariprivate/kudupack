@@ -1,0 +1,253 @@
+KUDUPACK ran into a problem it couldn't get past, and has to close.\n\n{0}	KUDUPACK encontró un problema que no pudo superar y tiene que cerrarse.\n\n{0}
+Something went wrong:\n\n{0}	Algo salió mal:\n\n{0}
+Azeem	Azeem
+Collecting files…	Reuniendo archivos…
+There are no files to add.	No hay archivos para añadir.
+Compressing…	Comprimiendo…
+Packing…	Empaquetando…
+Archives	Archivos comprimidos
+All files	Todos los archivos
+The archive engine (7z.dll) is missing. Please reinstall KUDUPACK.	Falta el motor de archivos comprimidos (7z.dll). Vuelve a instalar KUDUPACK.
+Folder	Carpeta
+File	Archivo
+{0} file	Archivo {0}
+…and {0} more	…y {0} más
+1 item wasn't extracted because its name would put it outside the folder you chose, or uses a name Windows reserves. Archives made to harm a PC use names like these, so be careful with the rest of this archive.	1 elemento no se extrajo porque su nombre lo pondría fuera de la carpeta que elegiste, o usa un nombre que Windows reserva. Los archivos comprimidos hechos para dañar un PC usan nombres así, así que ten cuidado con el resto de este archivo.
+{0} items weren't extracted because their names would put them outside the folder you chose, or use names Windows reserves. Archives made to harm a PC use names like these, so be careful with the rest of this archive.	{0} elementos no se extrajeron porque sus nombres los pondrían fuera de la carpeta que elegiste, o usan nombres que Windows reserva. Los archivos comprimidos hechos para dañar un PC usan nombres así, así que ten cuidado con el resto de este archivo.
+Reading {0}…	Leyendo {0}…
+Unpacking the TAR inside {0}…	Desempaquetando el TAR dentro de {0}…
+{0}.tar	{0}.tar
+{0} may be password-protected.	Puede que {0} tenga contraseña.
+That password didn't work for {0}. Try again.	Esa contraseña no sirvió para {0}. Inténtalo de nuevo.
+Files can only be added to ZIP and 7Z archives.	Solo se pueden añadir archivos a archivos ZIP y 7Z.
+Files can only be deleted from ZIP and 7Z archives.	Solo se pueden borrar archivos de archivos ZIP y 7Z.
+ ({0}% smaller)	 ({0}% más pequeño)
+File: {0}	Archivo: {0}
+Format: {0}	Formato: {0}
+Contents: {0} files, {1} folders	Contenido: {0} archivos, {1} carpetas
+Original size: {0}	Tamaño original: {0}
+Archive size: {0}	Tamaño comprimido: {0}
+Password protected: {0}	Con contraseña: {0}
+Yes	Sí
+No	No
+Parts: {0}	Partes: {0}
+{0} is password-protected.	{0} tiene contraseña.
+user	user
+Windows didn't allow KUDUPACK to write to this folder:\n{0}\n\nPick a folder in your user profile (like Desktop or Documents), or close KUDUPACK and start it with "Run as administrator".	Windows no dejó que KUDUPACK escribiera en esta carpeta:\n{0}\n\nElige una carpeta de tu perfil de usuario (como Escritorio o Documentos), o cierra KUDUPACK y ábrelo con "Ejecutar como administrador".
+archive	archive
+^(CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9]|CONIN\\$|CONOUT\\$) *(\\..*)?$	^(CON|PRN|AUX|NUL|COM[0-9]|LPT[0-9]|CONIN\\$|CONOUT\\$) *(\\..*)?$
+{0}.tmp	{0}.tmp
+Theme	Theme
+System	System
+Zip	Zip
+Recent	Recent
+KUDUPACK: Extract here	KUDUPACK: Extract here
+KUDUPACK: Extract to folder	KUDUPACK: Extract to folder
+KUDUPACK: Add to archive…	KUDUPACK: Add to archive…
+KUDUPACK archive	KUDUPACK archive
+Version {0}	Versión {0}
+Checking…	Comprobando…
+No releases have been published yet.	Todavía no se ha publicado ninguna versión.
+Version {0} is available.	La versión {0} está disponible.
+Download update	Descargar la actualización
+You have the latest version.	Tienes la última versión.
+Couldn't reach GitHub. Check your internet connection.	No se pudo llegar a GitHub. Revisa tu conexión a internet.
+Store	Sin comprimir
+Fast	Rápida
+Normal	Normal
+Maximum	Máxima
+Ultra	Ultra
+{0} file(s), {1} folder(s)	{0} archivo(s), {1} carpeta(s)
+{0} in files	{0} en archivos
+Choose files to add	Elige los archivos que quieres añadir
+Choose a folder to add	Elige una carpeta para añadir
+Save the archive in:	Guardar el archivo comprimido en:
+Add at least one file or folder first.	Añade al menos un archivo o una carpeta primero.
+Please enter a valid archive name. It can't contain \\ / : * ? " < > |	Escribe un nombre válido. No puede contener \\ / : * ? " < > |
+Please choose a folder to save the archive in.	Elige una carpeta donde guardar el archivo comprimido.
+The two passwords don't match.	Las dos contraseñas no coinciden.
+The archive can't have the same name as one of the files being added.	El archivo comprimido no puede llamarse igual que uno de los archivos que se añaden.
+{0} already exists. Replace it?	{0} ya existe. ¿Reemplazarlo?
+Creating {0}	Creando {0}
+Windows blocked this action for a normal user.\n\nChoose a folder in your user profile, or close KUDUPACK and start it with "Run as administrator".	Windows bloqueó esta acción para un usuario normal.\n\nElige una carpeta de tu perfil de usuario, o cierra KUDUPACK y ábrelo con "Ejecutar como administrador".
+This file couldn't be opened. It may be damaged, incomplete, or not an archive KUDUPACK supports.	No se pudo abrir este archivo. Puede estar dañado, incompleto o no ser un tipo que KUDUPACK admite.
+The archive engine reported a problem:\n\n{0}	El motor de archivos comprimidos informó de un problema:\n\n{0}
+Choose archives to extract	Elige los archivos comprimidos que quieres extraer
+Open an archive	Abrir un archivo comprimido
+TAR.{0}	TAR.{0}
+Right-click menu in File Explorer: {0}	Menú del clic derecho en el Explorador de archivos: {0}
+On	Activado
+Off	Desactivado
+{0}   ·   Version {1}	{0}   ·   Versión {1}
+This file no longer exists:\n{0}	Este archivo ya no existe:\n{0}
+Opening {0}…	Abriendo {0}…
+{0} - KUDUPACK	{0} - KUDUPACK
+Adding and deleting works for ZIP and 7Z archives that aren't split into parts.	Añadir y borrar funciona en archivos ZIP y 7Z que no estén divididos en partes.
+Add files to this archive	Añadir archivos a este archivo comprimido
+Delete the selected items from this archive	Borrar los elementos seleccionados de este archivo comprimido
+Password protected	Con contraseña
+Select a file to preview it.	Selecciona un archivo para verlo.
+KUDUPACK	KUDUPACK
+No files match your search.	Ningún archivo coincide con tu búsqueda.
+This folder is empty.	Esta carpeta está vacía.
+{0} files, {1} folders  ·  {2} → {3}{4}	{0} archivos, {1} carpetas  ·  {2} → {3}{4}
+{0} selected ({1})	{0} seleccionados ({1})
+Search results for "{0}"	Resultados de la búsqueda de "{0}"
+Size	Tamaño
+Modified	Modificado
+Name	Nombre
+Opening {0}	Abriendo {0}
+Extracting to a temporary folder…	Extrayendo a una carpeta temporal…
+Windows doesn't have an app set up to open this type of file.	Windows no tiene ninguna aplicación configurada para abrir este tipo de archivo.
+Extract the {0} selected item(s) to:	Extraer los {0} elementos seleccionados en:
+Extract everything to:	Extraer todo en:
+Extracting {0}	Extrayendo {0}
+Extracting to {0}	Extrayendo en {0}
+{0} was extracted and moved to the Recycle Bin.	{0} se extrajo y se movió a la Papelera de reciclaje.
+Add files to {0}	Añadir archivos a {0}
+Adding to {0}	Añadiendo a {0}
+Adding files…	Añadiendo archivos…
+{0} items	{0} elementos
+Delete {0} from {1}?\n\nThis can't be undone.	¿Borrar {0} de {1}?\n\nNo se puede deshacer.
+Deleting from {0}	Borrando de {0}
+Updating the archive…	Actualizando el archivo comprimido…
+Testing {0}	Probando {0}
+Checking every file…	Comprobando cada archivo…
+No errors found in {0}.	No se encontraron errores en {0}.
+{0} has errors. Some files may be damaged or incomplete.	{0} tiene errores. Algunos archivos pueden estar dañados o incompletos.
+Archive info	Información del archivo
+Folders can't be previewed.	No se puede ver una vista previa de las carpetas.
+There's no preview for this type of file. Double-click to open it.	No hay vista previa para este tipo de archivo. Haz doble clic para abrirlo.
+This file is too large to preview. Double-click to open it.	Este archivo es demasiado grande para la vista previa. Haz doble clic para abrirlo.
+This archive is password-protected. Double-click the file to enter the password.	Este archivo comprimido tiene contraseña. Haz doble clic en el archivo para escribirla.
+Loading…	Cargando…
+A preview couldn't be loaded.	No se pudo cargar la vista previa.
+This image couldn't be shown.	No se pudo mostrar esta imagen.
+… (preview shortened)	… (vista previa recortada)
+Add {0} to {1}?	¿Añadir {0} a {1}?
+That's a lot of data to drag. Use "Extract to…" instead so you can see the progress.	Son muchos datos para arrastrar. Usa "Extraer en…" para poder ver el progreso.
+This archive is password-protected. Use "Extract to…" and enter the password.	Este archivo comprimido tiene contraseña. Usa "Extraer en…" y escribe la contraseña.
+KUDUPACK {0} is available. You have {1}.	KUDUPACK {0} está disponible. Tienes la {1}.
+Extracting {0} archives	Extrayendo {0} archivos comprimidos
+Starting…	Empezando…
+Extracting {0} ({1} of {2})	Extrayendo {0} ({1} de {2})
+{0} extracted, {1} couldn't be extracted:\n\n{2}	{0} extraídos, {1} no se pudieron extraer:\n\n{2}
+A file with this name is already there	Ya hay un archivo con este nombre
+{0} files with these names are already there	Ya hay {0} archivos con estos nombres
+It's in "{0}". What should KUDUPACK do?	Está en "{0}". ¿Qué debe hacer KUDUPACK?
+They're in "{0}". What should KUDUPACK do?	Están en "{0}". ¿Qué debe hacer KUDUPACK?
+Skip them	Saltarlos
+Replace them	Reemplazarlos
+Skip it	Saltarlo
+Replace it	Reemplazarlo
+Stopping…	Deteniendo…
+About KUDUPACK	Acerca de KUDUPACK
+A lightweight archive tool for Windows. Opens ZIP, 7Z, RAR, TAR, GZ, XZ and more. Runs without administrator rights.	Una herramienta ligera para archivos comprimidos en Windows. Abre ZIP, 7Z, RAR, TAR, GZ, XZ y más. Funciona sin permisos de administrador.
+GitHub repository	Repositorio en GitHub
+Open-source licenses	Licencias de código abierto
+OK	Aceptar
+Check for updates	Buscar actualizaciones
+Create archive - KUDUPACK	Crear archivo comprimido - KUDUPACK
+Create archive	Crear archivo comprimido
+Archive name	Nombre del archivo comprimido
+Save to	Guardar en
+Save to folder	Guardar en la carpeta
+Browse…	Examinar…
+Format	Formato
+ZIP	ZIP
+Opens everywhere	Se abre en todas partes
+Smallest files	Archivos más pequeños
+TAR	TAR
+No compression	Sin compresión
+TAR.GZ	TAR.GZ
+Linux standard	Lo habitual en Linux
+TAR.BZ2	TAR.BZ2
+Smaller, slower	Más pequeño, más lento
+TAR.XZ	TAR.XZ
+Smallest for Linux	El más pequeño para Linux
+RAR archives can be opened and extracted, but not created.	Los archivos RAR se pueden abrir y extraer, pero no crear.
+Compression level	Nivel de compresión
+Password (optional)	Contraseña (opcional)
+Password	Contraseña
+Repeat password	Repite la contraseña
+Type the password twice. Leave both empty for no password.	Escribe la contraseña dos veces. Deja ambas vacías para no poner contraseña.
+Also hide file names (7Z only)	Ocultar también los nombres de los archivos (solo 7Z)
+TAR formats don't support passwords.	Los formatos TAR no admiten contraseñas.
+Split into parts	Dividir en partes
+Don't split	No dividir
+100 MB	100 MB
+700 MB	700 MB
+4 GB (USB drives)	4 GB (memorias USB)
++ Files	+ Archivos
++ Folder	+ Carpeta
+Files to add	Archivos que se añaden
+Remove	Quitar
+Remove from list	Quitar de la lista
+Drop files or folders here, or use + Files / + Folder.	Suelta aquí archivos o carpetas, o usa + Archivos / + Carpeta.
+Cancel	Cancelar
+Create	Crear
+Dismiss	Cerrar
+Dismiss update notice	Cerrar el aviso de actualización
+Download	Descargar
+Drop files or an archive here	Suelta aquí archivos o un archivo comprimido
+Drop an archive to open it. Drop files or folders to pack them into a new archive.	Suelta un archivo comprimido para abrirlo. Suelta archivos o carpetas para meterlos en uno nuevo.
+Open archive…	Abrir archivo comprimido…
+Create archive…	Crear archivo comprimido…
+Extract many…	Extraer varios…
+Supported formats	Formatos admitidos
+OPEN & EXTRACT	ABRIR Y EXTRAER
+CREATE	CREAR
+Clear	Borrar la lista
+Recent archives	Archivos comprimidos recientes
+Archives you open will show up here.	Los archivos comprimidos que abras aparecerán aquí.
+About	Acerca de
+Settings	Ajustes
+New archive	Nuevo archivo comprimido
+Back to start	Volver al inicio
+Extract everything into a new folder next to the archive	Extraer todo en una carpeta nueva junto al archivo comprimido
+Extract all	Extraer todo
+Extract the selected items (or everything) to a folder you choose	Extraer los elementos seleccionados (o todo) en la carpeta que elijas
+Extract to…	Extraer en…
+Add files	Añadir archivos
+Delete	Borrar
+Check the archive for errors	Comprobar si el archivo comprimido tiene errores
+Test	Probar
+Info	Información
+Show a preview of the selected file	Mostrar una vista previa del archivo seleccionado
+Preview	Vista previa
+Up one folder	Subir una carpeta
+Search in archive	Buscar en el archivo comprimido
+Folders	Carpetas
+Files in archive	Archivos dentro
+Type	Tipo
+Opening…	Abriendo…
+Files already exist - KUDUPACK	Los archivos ya existen - KUDUPACK
+Leave the files that are already there and don't extract these	Dejar los archivos que ya están ahí y no extraer estos
+Replace	Reemplazar
+Overwrite the files that are already there	Escribir encima de los archivos que ya están ahí
+Keep both	Conservar ambos
+Extract these with a number added to their names, like report (2).pdf	Extraerlos con un número añadido al nombre, como report (2).pdf
+Password - KUDUPACK	Contraseña - KUDUPACK
+Enter password	Escribe la contraseña
+Show password	Mostrar la contraseña
+Settings - KUDUPACK	Ajustes - KUDUPACK
+Appearance	Aspecto
+Same as Windows	Igual que Windows
+Light	Claro
+Dark	Oscuro
+Language	Idioma
+The language changes the next time you start KUDUPACK.	El idioma cambia la próxima vez que abras KUDUPACK.
+After extracting	Después de extraer
+Open the folder with the extracted files	Abrir la carpeta con los archivos extraídos
+Move the archive to the Recycle Bin	Mover el archivo comprimido a la Papelera de reciclaje
+Only after everything was extracted. Split archives are never removed.	Solo cuando se extrajo todo. Los archivos divididos nunca se quitan.
+File Explorer	Explorador de archivos
+Show KUDUPACK in the right-click menu	Mostrar KUDUPACK en el menú del clic derecho
+Adds Extract here, Extract to folder and Add to archive. On Windows 11 they're under "Show more options".	Añade Extract here, Extract to folder y Add to archive. En Windows 11 están en "Mostrar más opciones".
+Open archives with KUDUPACK when double-clicked	Abrir los archivos comprimidos con KUDUPACK al hacer doble clic
+Windows may ask you to confirm. You can also choose it in	Puede que Windows te pida confirmarlo. También puedes elegirlo en
+Default apps	Aplicaciones predeterminadas
+Updates	Actualizaciones
+Tell me when a new version is on GitHub	Avisarme cuando haya una versión nueva en GitHub
+All settings are saved for your Windows account only, so KUDUPACK never needs administrator rights. If you want to extract into a protected folder such as Program Files, close KUDUPACK and start it with "Run as administrator".	Toda la configuración se guarda solo para tu cuenta de Windows, así que KUDUPACK nunca necesita permisos de administrador. Si quieres extraer en una carpeta protegida como Archivos de programa, cierra KUDUPACK y ábrelo con "Ejecutar como administrador".
+Done	Hecho

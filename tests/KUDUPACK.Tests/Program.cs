@@ -52,6 +52,46 @@ namespace Kudupack.Tests
             return _failed == 0 ? 0 : 1;
         }
 
+        // ================================================================== other languages
+
+        private static void TestEveryLanguageFileIsWholeAndUsed()
+        {
+            string dir = AppContext.BaseDirectory;
+            while (dir != null && !Directory.Exists(Path.Combine(dir, "src", "KUDUPACK", "Lang"))) dir = Path.GetDirectoryName(dir);
+            Check(dir != null, "src/KUDUPACK/Lang is found");
+            string langDir = Path.Combine(dir, "src", "KUDUPACK", "Lang");
+            string Holes(string t) => string.Join(",", System.Text.RegularExpressions.Regex.Matches(t, @"\{\d\}").Select(m => m.Value).Distinct().OrderBy(x => x));
+            var counts = Lang.All.Where(l => l.Code != "en").Select(l => File.ReadAllLines(Path.Combine(langDir, l.Code + ".txt")).Length).ToList();
+            Check(counts.All(c => c == counts[0] && c > 100), "every language has every text: " + string.Join(", ", counts));
+            foreach (var (code, _) in Lang.All.Where(l => l.Code != "en"))
+                foreach (string line in File.ReadAllLines(Path.Combine(langDir, code + ".txt")))
+                {
+                    int tab = line.IndexOf('\t');
+                    Check(tab > 0 && tab < line.Length - 1 && line.IndexOf('\t', tab + 1) < 0, code + ": one English text and one translation: " + line);
+                    Check(Holes(line.Substring(0, tab)) == Holes(line.Substring(tab + 1)), code + ": the same places to fill in: " + line);
+                }
+            try
+            {
+                foreach (var (code, settings) in new[] { ("ml", "ക്രമീകരണങ്ങൾ"), ("hi", "सेटिंग्स"), ("es", "Ajustes"), ("fr", "Paramètres"), ("ar", "الإعدادات") })
+                {
+                    Lang.Load(code, new[] { File.ReadAllText(Path.Combine(langDir, code + ".txt")) });
+                    Equal(code, Lang.Current, code + " loaded");
+                    Equal(settings, Lang.T("Settings"), code + ": Settings");
+                    Check(Lang.T("{0} items", 3) != "3 items", code + ": counts in the language");
+                    var report = new ExtractReport();
+                    report.Unsafe.Add("..\\evil.exe");
+                    Check(!report.UnsafeWarning().StartsWith("1 item wasn't"), code + ": the warning about harmful names is translated");
+                    Equal("Something nobody wrote down", Lang.T("Something nobody wrote down"), code + ": unknown text stays as it is");
+                }
+                Check(Lang.RightToLeft, "Arabic is right to left");
+            }
+            finally
+            {
+                Lang.Load("en", null);
+            }
+            Equal("Settings", Lang.T("Settings"), "English unchanged");
+        }
+
         // ================================================================== helpers
 
         private static void Check(bool condition, string what)
