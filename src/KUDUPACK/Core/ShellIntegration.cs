@@ -135,7 +135,11 @@ namespace Kudupack.Core
             try { SetAssociations(false); } catch { }
         }
 
-        public static void OpenDefaultAppsSettings() => AppInfo.OpenUrl("ms-settings:defaultapps");
+        public static void OpenDefaultAppsSettings()
+        {
+            try { System.Diagnostics.Process.Start(new System.Diagnostics.ProcessStartInfo("ms-settings:defaultapps") { UseShellExecute = true }); }
+            catch { /* Settings isn't available */ }
+        }
 
         private static void SetVerb(RegistryKey classes, string keyPath, string text, string args)
         {

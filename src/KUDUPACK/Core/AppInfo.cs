@@ -34,9 +34,11 @@ namespace Kudupack.Core
             }
         }
 
+        /// <summary>Opens a web page in the default browser. Only http and https links are opened, never files or programs.</summary>
         public static void OpenUrl(string url)
         {
-            try { Process.Start(new ProcessStartInfo(url) { UseShellExecute = true }); }
+            if (!Uri.TryCreate(url, UriKind.Absolute, out var uri) || (uri.Scheme != Uri.UriSchemeHttps && uri.Scheme != Uri.UriSchemeHttp)) return;
+            try { Process.Start(new ProcessStartInfo(uri.AbsoluteUri) { UseShellExecute = true }); }
             catch { /* no browser available */ }
         }
     }
